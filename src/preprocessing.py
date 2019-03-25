@@ -7,6 +7,7 @@ from scipy.interpolate import griddata
 import scipy.ndimage as ndimage
 import h5py
 import pandas as pd
+import time
 
 def image_preprocessing(file_path = '../data/9000296'):
     '''
@@ -17,13 +18,14 @@ def image_preprocessing(file_path = '../data/9000296'):
     # read data from DICOM file
     data = dicom.read_file(file_path)
     img = interpolate_resolution(data) # get fixed resolution
+    img_before = img.copy()
     # img = np.frombuffer(data.PixelData, dtype=np.uint16).copy().astype(np.float64)
 
 
     #reshape the image
     #img = img.reshape((rows,cols))
     # Interpolation with INTER_CUBIC and resize to 2048 X 2048
-    img = cv2.resize(img,(2048,2048), interpolation=cv2.INTER_CUBIC)
+    # img = cv2.resize(img,(2048,2048), interpolation=cv2.INTER_CUBIC)
     rows, cols = img.shape
     # get center part of image if image is large enough
     if rows >= 2048 and cols >= 2048:
@@ -36,7 +38,7 @@ def image_preprocessing(file_path = '../data/9000296'):
     # apply hist truncation
     img = hist_truncation(img)
 
-    return img,data
+    return img,data,img_before
 
 
 def interpolate_resolution(image_dicom, scaling_factor=0.2):
@@ -77,8 +79,14 @@ def padding(img,img_size = (2048,2048)):
     rows,cols = img.shape
     x_padding = img_size[0] - rows
     y_padding = img_size[1] - cols
-    before_x,after_x = x_padding // 2, x_padding - x_padding // 2
-    before_y,after_y = y_padding // 2, y_padding - y_padding // 2
+    if x_padding > 0:
+        before_x,after_x = x_padding // 2, x_padding - x_padding // 2
+    else:
+        before_x,after_x = 0,0
+    if y_padding > 0:
+        before_y,after_y = y_padding // 2, y_padding - y_padding // 2
+    else:
+        before_y,after_y = 0,0
     return np.pad(img,((before_x,after_x),(before_y,after_y)),'constant')
 
 
@@ -175,15 +183,18 @@ def extract_knee(image_array, side):
             image_array = image_array[row_start:row_end, (col_center - 512):(col_center + 512)]
             print('Column Indices for Left Final: ', col_center - 512, col_center + 512)
     return image_array
-def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_original/00m/'):
+def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_original/',month = '00m'):
+    content_file_path = os.path.join(content_file_path,month)
     file_name = 'contents.csv'
     count = 0
     summary = {
+        'File Name':[],
         'Folder':[],
         'Participant ID':[],
         'Study Date':[],
         'Bar Code':[],
-        'Description':[]
+        'Description':[],
+        'Image Size':[]
     }
     with open(os.path.join(content_file_path,file_name),'r') as f:
         next(f) # skip first row
@@ -192,23 +203,26 @@ def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_
             data_path,patientID,studyDate,barCode,description = line[0],line[1],line[2],line[3],line[4]
             description = description.rstrip().replace('"','').replace(' ','').split('^') # split fields inside description
             if description[1] == 'XRAY' and description[-1] == 'KNEE':
-                data_path = content_file_path + data_path.replace('"','')
+                data_path = content_file_path + '/'+ data_path.replace('"','')
                 data_files = os.listdir(data_path)
                 for data_file in data_files:
-                    img,data = image_preprocessing(os.path.join(data_path,data_file))
+                    img,data,img_before = image_preprocessing(os.path.join(data_path,data_file))
                     left,right = extract_knee(img,0), extract_knee(img,1)
-                    create_hdf5_file(summary,left,data,patientID,studyDate,barCode,'Left_knee')
-                    create_hdf5_file(summary,right,data,patientID,studyDate,barCode,'Right_knee')
+                    create_hdf5_file(summary,left,data,patientID,studyDate,barCode,'LEFT',month,data_path)
+                    create_hdf5_file(summary,right,data,patientID,studyDate,barCode,'RIGHT',month,data_path)
+                    generate_figure(img_before,
+                                    img,
+                                    left,right,
+                                    '../test/test_image/','{}_{}_{}.png'.format(patientID,studyDate,barCode))
                     count += 1
-
-            if count >= 20:
+            if count and count >= 20:
                 break
 
     print('Total processed:',count)
     df = pd.DataFrame(summary)
-    df.to_csv('summary.csv')
+    df.to_csv('summary.csv',index = False)
 
-def create_hdf5_file(summary,image, data,patientID, studyDate, barCode,description,
+def create_hdf5_file(summary,image, data,patientID, studyDate, barCode,description,month,data_path,
                      save_dir = '/gpfs/data/denizlab/Users/bz1030/test/test1/'):
     '''
 
@@ -223,16 +237,18 @@ def create_hdf5_file(summary,image, data,patientID, studyDate, barCode,descripti
     :return:
     '''
 
-    file_name = str(patientID) +'_'+ studyDate + '_'+barCode +'_' + description
+    file_name = str(patientID) +'_'+ month + '_'+ description +'_' + 'KNEE.hdf5'
     pixelDimensions = image.shape
     pixelSpacing = '%.3fx%.3f' % (float(data.PixelSpacing[0]),float(data.PixelSpacing[1]))
 
     # modify summary dictionary
-    summary['Folder'].append(save_dir + file_name)
+    summary['File Name'].append(file_name)
+    summary['Folder'].append(data_path)
     summary['Participant ID'].append(patientID)
     summary['Study Date'].append(studyDate)
     summary['Bar Code'].append(barCode)
     summary['Description'].append(description)
+    summary['Image Size'].append('{}x{}'.format(*pixelDimensions))
     # create hdf5 file
     f = h5py.File(save_dir + file_name,'w')
     f.create_dataset('data', data = image)
@@ -241,7 +257,18 @@ def create_hdf5_file(summary,image, data,patientID, studyDate, barCode,descripti
     f.create_dataset('Folder',data=save_dir + file_name)
     f.close()
 
-
+def generate_figure(img_array_before,img_array_after,left,right,save_dir,file_name):
+    f, ax = plt.subplots(2,2,dpi=300)
+    ax[0,0].imshow(img_array_before)
+    ax[0,1].imshow(img_array_after)
+    ax[1,0].imshow(left)
+    ax[1,1].imshow(right)
+    ax[0,0].set_title('Before preprocessing')
+    ax[0,1].set_title('After preprocessing')
+    ax[1,0].set_title('Left')
+    ax[1,1].set_title('Right')
+    f.tight_layout()
+    f.savefig(os.path.join(save_dir,file_name),dpi=300,bbox_inches='tight')
 
 if __name__ == '__main__':
     read_dicome_and_process()
