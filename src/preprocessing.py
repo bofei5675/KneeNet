@@ -183,10 +183,43 @@ def extract_knee(image_array, side):
             image_array = image_array[row_start:row_end, (col_center - 512):(col_center + 512)]
             print('Column Indices for Left Final: ', col_center - 512, col_center + 512)
     return image_array
+
+def get_KL_grade(file_path='/gpfs/data/denizlab/Datasets/OAI/ClinicalFromNDA/X-Ray Image Assessments_SAS/Semi-Quant Scoring_SAS/kxr_sq_bu00.txt'):
+    '''
+    Read KL Grade as a data frame
+    :param file_path:
+    :return:
+    '''
+    df = pd.read_csv(file_path,sep='|')[['ID','SIDE','V00XRKL','READPRJ']]
+    df = df.loc[df['READPRJ'] == 15]
+    return df
+def get_KL(df,patientID,side):
+    '''
+    Get KLG from dataframe
+    :param df:
+    :param patientID:
+    :param side: 1:right, 2:left
+    :return:
+    '''
+    patientInfo = df.loc[df['ID'] == patientID]
+    kl_grade = patientInfo.loc[patientInfo['SIDE'] == side,'V00XRKL']
+    if kl_grade.shape[0] == 0:
+        kl_grade ='NA'
+    return np.squeeze(kl_grade)
+
 def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_original/',month = '00m'):
+    '''
+    Read the content files and process all DICOM Image
+
+    :param content_file_path:
+    :param month:
+    :return:
+    '''
     content_file_path = os.path.join(content_file_path,month)
     file_name = 'contents.csv'
     count = 0
+    KL_Grade = get_KL_grade()
+    print(KL_Grade.head())
     summary = {
         'File Name':[],
         'Folder':[],
@@ -194,7 +227,8 @@ def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_
         'Study Date':[],
         'Bar Code':[],
         'Description':[],
-        'Image Size':[]
+        'Image Size':[],
+        'KLG':[]
     }
     with open(os.path.join(content_file_path,file_name),'r') as f:
         next(f) # skip first row
@@ -208,8 +242,9 @@ def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_
                 for data_file in data_files:
                     img,data,img_before = image_preprocessing(os.path.join(data_path,data_file))
                     left,right = extract_knee(img,0), extract_knee(img,1)
-                    create_hdf5_file(summary,left,data,patientID,studyDate,barCode,'LEFT',month,data_path)
-                    create_hdf5_file(summary,right,data,patientID,studyDate,barCode,'RIGHT',month,data_path)
+                    left_kl,right_kl = get_KL(KL_Grade,int(patientID),2),get_KL(KL_Grade,int(patientID),1)
+                    create_hdf5_file(summary,left,data,patientID,studyDate,barCode,'LEFT',left_kl,month,data_path)
+                    create_hdf5_file(summary,right,data,patientID,studyDate,barCode,'RIGHT',right_kl,month,data_path)
                     generate_figure(img_before,
                                     img,
                                     left,right,
@@ -222,7 +257,7 @@ def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_
     df = pd.DataFrame(summary)
     df.to_csv('summary.csv',index = False)
 
-def create_hdf5_file(summary,image, data,patientID, studyDate, barCode,description,month,data_path,
+def create_hdf5_file(summary,image, data,patientID, studyDate, barCode,description,kl_grade,month,data_path,
                      save_dir = '/gpfs/data/denizlab/Users/bz1030/test/test1/'):
     '''
 
@@ -249,6 +284,7 @@ def create_hdf5_file(summary,image, data,patientID, studyDate, barCode,descripti
     summary['Bar Code'].append(barCode)
     summary['Description'].append(description)
     summary['Image Size'].append('{}x{}'.format(*pixelDimensions))
+    summary['KLG'].append(kl_grade)
     # create hdf5 file
     f = h5py.File(save_dir + file_name,'w')
     f.create_dataset('data', data = image)
