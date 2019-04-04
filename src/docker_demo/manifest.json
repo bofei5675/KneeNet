@@ -1,0 +1,54 @@
+{
+  "name": "demo",
+  "label": "Example Gear",
+  "description": "A gear that performs a task.",
+  "version": "1.0",
+  "author": "Bofei Zhang",
+  "maintainer": "Bofei Zhang",
+  "cite": "",
+  "license": "Apache-2.0",
+  "url": "http://example.example",
+  "source": "http://example.example/code",
+  "environment": {
+  },
+  "command": "python docker_demo.py"
+
+  "config": {
+    "speed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3,
+      "description": "How fast do you want the gear to run? Choose 0-3."
+    },
+    "coordinates": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minItems": 3,
+        "maxItems": 3
+      },
+      "description": "A set of 3D coordinates."
+    }
+  },
+  "inputs": {
+    "dicom": {
+      "base": "file",
+      "type": {
+        "enum": [
+          "dicom"
+        ]
+      },
+      "description": "Any dicom file."
+    },
+    "matlab_license_code": {
+      "base": "context"
+    },
+    "key": {
+      "base": "api-key",
+      "read-only": true
+    }
+  },
+  "capabilities": [
+    "networking"
+  ]
+}
