@@ -8,6 +8,20 @@ import scipy.ndimage as ndimage
 import h5py
 import pandas as pd
 import time
+import os
+import numpy as np
+import pydicom as dicom
+import cv2
+import matplotlib.pyplot as plt
+from scipy.interpolate import griddata
+import random as rand
+#import pandas as pd
+import time
+import scipy.ndimage as ndimage
+from oulukneeloc import SVM_MODEL_PATH
+from oulukneeloc.proposals import (read_dicom, get_joint_y_proposals,
+                                   preprocess_xray)
+from detector import KneeLocalizer,worker
 
 def image_preprocessing(file_path = '../data/9000296'):
     '''
@@ -31,7 +45,7 @@ def image_preprocessing(file_path = '../data/9000296'):
     if rows >= 2048 and cols >= 2048:
         img = get_center_image(img)
     else:
-        img = padding(img)
+        img,_,_ = padding(img)
         img = get_center_image(img) # after padding get the center of image
     # apply normalization
     img = global_contrast_normalization(img)
@@ -39,7 +53,6 @@ def image_preprocessing(file_path = '../data/9000296'):
     img = hist_truncation(img)
 
     return img,data,img_before
-
 
 def interpolate_resolution(image_dicom, scaling_factor=0.2):
     '''
@@ -87,7 +100,7 @@ def padding(img,img_size = (2048,2048)):
         before_y,after_y = y_padding // 2, y_padding - y_padding // 2
     else:
         before_y,after_y = 0,0
-    return np.pad(img,((before_x,after_x),(before_y,after_y)),'constant')
+    return np.pad(img,((before_x,after_x),(before_y,after_y)),'constant'),before_x,before_y
 
 
 def global_contrast_normalization(img, s=1, lambda_=10, epsilon=1e-8):
@@ -219,7 +232,6 @@ def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_
     file_name = 'contents.csv'
     count = 0
     KL_Grade = get_KL_grade()
-    print(KL_Grade.head())
     summary = {
         'File Name':[],
         'Folder':[],
@@ -241,13 +253,14 @@ def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_
                 data_files = os.listdir(data_path)
                 for data_file in data_files:
                     img,data,img_before = image_preprocessing(os.path.join(data_path,data_file))
+                    left_svm, right_svm = image_preprocessing_oulu(data_path,data_file)
                     left,right = extract_knee(img,0), extract_knee(img,1)
                     left_kl,right_kl = get_KL(KL_Grade,int(patientID),2),get_KL(KL_Grade,int(patientID),1)
                     create_hdf5_file(summary,left,data,patientID,studyDate,barCode,'LEFT',left_kl,month,data_path)
                     create_hdf5_file(summary,right,data,patientID,studyDate,barCode,'RIGHT',right_kl,month,data_path)
                     generate_figure(img_before,
                                     img,
-                                    left,right,
+                                    left,right,left_svm,right_svm,
                                     '../test/test_image/','{}_{}_{}.png'.format(patientID,studyDate,barCode))
                     count += 1
             if count and count >= 20:
@@ -293,8 +306,24 @@ def create_hdf5_file(summary,image, data,patientID, studyDate, barCode,descripti
     f.create_dataset('Folder',data=save_dir + file_name)
     f.close()
 
-def generate_figure(img_array_before,img_array_after,left,right,save_dir,file_name):
-    f, ax = plt.subplots(2,2,dpi=300)
+def generate_figure(img_array_before,img_array_after,left,right,
+                    left_SVM = None, right_SVM = None,save_dir=None,file_name=None):
+    '''
+
+    :param img_array_before:
+    :param img_array_after:
+    :param left:
+    :param right:
+    :param left_SVM:
+    :param right_SVM:
+    :param save_dir:
+    :param file_name:
+    :return:
+    '''
+    rows = 2 if left_SVM is None else 3
+    cols = 2
+    f, ax = plt.subplots(rows,cols,dpi=300)
+
     ax[0,0].imshow(img_array_before)
     ax[0,1].imshow(img_array_after)
     ax[1,0].imshow(left)
@@ -303,9 +332,108 @@ def generate_figure(img_array_before,img_array_after,left,right,save_dir,file_na
     ax[0,1].set_title('After preprocessing')
     ax[1,0].set_title('Left')
     ax[1,1].set_title('Right')
+    if rows == 3:
+        print('More figures')
+        ax[2, 0].imshow(left_SVM)
+        ax[2, 1].imshow(right_SVM)
+        ax[2, 0].set_title('Left_Knee_OULU')
+        ax[2, 1].set_title('Right_Knee_OULU')
     f.tight_layout()
     f.savefig(os.path.join(save_dir,file_name),dpi=300,bbox_inches='tight')
+'''
+Code below is from OULU lab. It includes how they did the preprocessing and extract knee from 
+images
+'''
+def image_preprocessing_oulu(data_folder,file):
+    localizer = KneeLocalizer()
 
+    bbox = worker(file, data_folder, localizer) # output a string
+    patch_left, patch_right = read_file_oulu(os.path.join(data_folder, file), bbox)
+    return patch_left,patch_right
+
+def read_file_oulu(file_path,bbox,sizemm=140,pad=300):
+    '''
+    :param file_path: file path the DICOM Data
+    :param bbox: file name + box frame corrdinates as a list
+    :param sizemm: size
+    :param pad: padding size
+    :return: pixel data of left knee and right knee
+    '''
+    data = dicom.read_file(file_path)
+    bbox = bbox.split(' ')
+    file_name = bbox[0]
+    bbox = np.array([int(i) for i in bbox[1:]])
+    if bbox[0] == -1:
+        return None,None
+    print(bbox)
+    # process_xray
+    # get data from Dicom file
+    img = np.frombuffer(data.PixelData, dtype=np.uint16).copy().astype(np.float64)
+    img = img.reshape((data.Rows, data.Columns))
+    cut_min = 5
+    cut_max = 99
+    multiplier = 65535
+
+    img = img.copy()
+    lim1, lim2 = np.percentile(img, [cut_min, cut_max])
+    img[img < lim1] = lim1
+    img[img > lim2] = lim2
+
+    img -= lim1
+    img /= img.max()
+    img *= multiplier
+
+    img = img.astype(np.float)
+    # define spacing, sizemm, pad
+    try:
+        spacing = float(data.ImagerPixelSpacing[0])
+    except AttributeError:
+        spacing = 0.2
+    sizepx = int(np.round(sizemm / spacing))
+
+    tmp = np.zeros((img.shape[0] + 2 * pad, img.shape[1] + 2 * pad))
+    tmp[pad:pad + img.shape[0], pad:pad + img.shape[1]] = img
+    I = tmp
+    # left knee coordinates
+    x1, y1, x2, y2 = bbox[:4] + pad  # apply padding to the frame of knee
+
+    cx = x1 + (x2 - x1) // 2  # compute center of x
+    cy = y1 + (y2 - y1) // 2  # compute cneter of y
+
+    x1 = cx - 512
+    x2 = cx + 512
+    y1 = cy - 512
+    y2 = cy + 512
+    # compute frame corrdinates
+
+    patch = I[y1:y2, x1:x2]
+    patch -= patch.min()
+    patch /= patch.max()
+    patch *= 65535
+    patch = np.round(patch)
+    patch_left = patch.astype(np.uint16)
+
+    # right knee coordinates
+    x1, y1, x2, y2 = bbox[4:] + pad
+
+    cx = x1 + (x2 - x1) // 2
+    cy = y1 + (y2 - y1) // 2
+
+    x1 = cx - 512
+    x2 = cx + 512
+    y1 = cy - 512
+    y2 = cy + 512
+    # compute frame corrdinates
+
+    patch = I[y1:y2, x1:x2]
+    print('({},{})-({},{})'.format(x1, y1, x2, y2))
+    patch -= patch.min()
+    patch /= patch.max()
+    patch *= 65535
+    patch = np.round(patch)
+    patch_right = patch.astype(np.uint16)
+
+    return patch_left, patch_right
 if __name__ == '__main__':
     read_dicome_and_process()
     print('Finished')
