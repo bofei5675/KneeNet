@@ -15,14 +15,12 @@ import cv2
 import matplotlib.pyplot as plt
 from scipy.interpolate import griddata
 import random as rand
-#import pandas as pd
 import time
 import scipy.ndimage as ndimage
 from oulukneeloc import SVM_MODEL_PATH
 from oulukneeloc.proposals import (read_dicom, get_joint_y_proposals,
                                    preprocess_xray)
 from detector import KneeLocalizer,worker
-
 def image_preprocessing(file_path = '../data/9000296'):
     '''
 
@@ -212,7 +210,7 @@ def get_KL(df,patientID,side):
     if kl_grade.shape[0] == 0:
         kl_grade ='NA'
     return np.squeeze(kl_grade)
-def read_dicome_and_convert(content_file_path='/gpfs/data/denizlab/Datasets/OAI_original/',month = '00m',save_dir = '../test/test_dicom'):
+def read_dicome_and_convert(content_file_path='/gpfs/data/denizlab/Datasets/OAI_original/',month = '00m',save_dir = '/gpfs/data/denizlab/Users/bz1030/test/OAI_original/'):
     '''
     read all dicome and convert them to fix resolution
     :param content_file_path:
@@ -222,6 +220,8 @@ def read_dicome_and_convert(content_file_path='/gpfs/data/denizlab/Datasets/OAI_
     content_file_path = os.path.join(content_file_path, month)
     file_name = 'contents.csv'
     count = 0
+    save_dir  = os.path.join(save_dir,month)
+    print('Save to ',save_dir)
     with open(os.path.join(content_file_path, file_name), 'r') as f:
         next(f)  # skip first row
         for line in f:
@@ -233,13 +233,13 @@ def read_dicome_and_convert(content_file_path='/gpfs/data/denizlab/Datasets/OAI_
             if description[1] == 'XRAY' and description[-1] == 'KNEE':
                 data_path = content_file_path + '/' + data_path.replace('"', '')
                 data_files = os.listdir(data_path)
-                print(data_path)
-                time.sleep(3)
                 for data_file in data_files:
                     img, data, img_before = image_preprocessing(os.path.join(data_path, data_file))
                     data.PixelData = img.tobytes()
-                    file_name = patientID + '_' + studyDate + '_' + barCode + '_' + data_file
-                    data.save_as(os.path.join(save_dir,file_name))
+                    file_path = os.path.join(save_dir,patientID,studyDate,barCode)
+                    if not os.path.exists(file_path):
+                        os.makedirs(file_path)
+                    data.save_as(os.path.join(file_path,data_file))
 
                     count += 1
 
@@ -457,7 +457,6 @@ def read_file_oulu(file_path,bbox,sizemm=140,pad=300):
     patch_right = patch.astype(np.uint16)
 
     return patch_left, patch_right
-
 
 if __name__ == '__main__':
     read_dicome_and_convert()
