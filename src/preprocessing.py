@@ -33,13 +33,6 @@ def image_preprocessing(file_path = '../data/9000296'):
     data = dicom.read_file(file_path)
     img = interpolate_resolution(data) # get fixed resolution
     img_before = img.copy()
-    # img = np.frombuffer(data.PixelData, dtype=np.uint16).copy().astype(np.float64)
-
-
-    #reshape the image
-    #img = img.reshape((rows,cols))
-    # Interpolation with INTER_CUBIC and resize to 2048 X 2048
-    # img = cv2.resize(img,(2048,2048), interpolation=cv2.INTER_CUBIC)
     rows, cols = img.shape
     # get center part of image if image is large enough
     if rows >= 2048 and cols >= 2048:
@@ -219,6 +212,36 @@ def get_KL(df,patientID,side):
     if kl_grade.shape[0] == 0:
         kl_grade ='NA'
     return np.squeeze(kl_grade)
+def read_dicome_and_convert(content_file_path='/gpfs/data/denizlab/Datasets/OAI_original/',month = '00m',save_dir = '../test/test_dicom'):
+    '''
+    read all dicome and convert them to fix resolution
+    :param content_file_path:
+    :param month:
+    :return:
+    '''
+    content_file_path = os.path.join(content_file_path, month)
+    file_name = 'contents.csv'
+    count = 0
+    with open(os.path.join(content_file_path, file_name), 'r') as f:
+        next(f)  # skip first row
+        for line in f:
+            line = line.rstrip().replace('"', '').split(',')  # split each line by csv
+            data_path, patientID, studyDate, barCode, description = line[0], line[1], line[2], line[3], line[4]
+            description = description.rstrip().replace('"', '').replace(' ', '').split(
+                '^')  # split fields inside description
+            # only look at XRAY and Knee data
+            if description[1] == 'XRAY' and description[-1] == 'KNEE':
+                data_path = content_file_path + '/' + data_path.replace('"', '')
+                data_files = os.listdir(data_path)
+                print(data_path)
+                time.sleep(3)
+                for data_file in data_files:
+                    img, data, img_before = image_preprocessing(os.path.join(data_path, data_file))
+                    data.PixelData = img.tobytes()
+                    file_name = patientID + '_' + studyDate + '_' + barCode + '_' + data_file
+                    data.save_as(os.path.join(save_dir,file_name))
+
+                    count += 1
 
 def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_original/',month = '00m'):
     '''
@@ -248,6 +271,7 @@ def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_
             line = line.rstrip().replace('"','').split(',') # split each line by csv
             data_path,patientID,studyDate,barCode,description = line[0],line[1],line[2],line[3],line[4]
             description = description.rstrip().replace('"','').replace(' ','').split('^') # split fields inside description
+            # only look at XRAY and Knee data
             if description[1] == 'XRAY' and description[-1] == 'KNEE':
                 data_path = content_file_path + '/'+ data_path.replace('"','')
                 data_files = os.listdir(data_path)
@@ -256,6 +280,7 @@ def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_
                     left_svm, right_svm = image_preprocessing_oulu(data_path,data_file)
                     left,right = extract_knee(img,0), extract_knee(img,1)
                     left_kl,right_kl = get_KL(KL_Grade,int(patientID),2),get_KL(KL_Grade,int(patientID),1)
+                    # create hdf5 file
                     create_hdf5_file(summary,left,data,patientID,studyDate,barCode,'LEFT',left_kl,month,data_path)
                     create_hdf5_file(summary,right,data,patientID,studyDate,barCode,'RIGHT',right_kl,month,data_path)
                     generate_figure(img_before,
@@ -360,8 +385,8 @@ def read_file_oulu(file_path,bbox,sizemm=140,pad=300):
     :return: pixel data of left knee and right knee
     '''
     data = dicom.read_file(file_path)
+
     bbox = bbox.split(' ')
-    file_name = bbox[0]
     bbox = np.array([int(i) for i in bbox[1:]])
     if bbox[0] == -1:
         return None,None
@@ -370,6 +395,13 @@ def read_file_oulu(file_path,bbox,sizemm=140,pad=300):
     # get data from Dicom file
     img = np.frombuffer(data.PixelData, dtype=np.uint16).copy().astype(np.float64)
     img = img.reshape((data.Rows, data.Columns))
+    x1, y1, x2, y2 = bbox[:4]
+    patch_left = img[y1:y2,x1:x2]
+    x1, y1, x2, y2 = bbox[4:]
+    patch_right = img[y1:y2,x1:x2]
+
+    return patch_left,patch_right
+
     cut_min = 5
     cut_max = 99
     multiplier = 65535
@@ -407,10 +439,6 @@ def read_file_oulu(file_path,bbox,sizemm=140,pad=300):
     # compute frame corrdinates
 
     patch = I[y1:y2, x1:x2]
-    patch -= patch.min()
-    patch /= patch.max()
-    patch *= 65535
-    patch = np.round(patch)
     patch_left = patch.astype(np.uint16)
 
     # right knee coordinates
@@ -424,16 +452,13 @@ def read_file_oulu(file_path,bbox,sizemm=140,pad=300):
     y1 = cy - 512
     y2 = cy + 512
     # compute frame corrdinates
-
     patch = I[y1:y2, x1:x2]
     print('({},{})-({},{})'.format(x1, y1, x2, y2))
-    patch -= patch.min()
-    patch /= patch.max()
-    patch *= 65535
-    patch = np.round(patch)
     patch_right = patch.astype(np.uint16)
 
     return patch_left, patch_right
+
+
 if __name__ == '__main__':
-    read_dicome_and_process()
+    read_dicome_and_convert()
     print('Finished')
