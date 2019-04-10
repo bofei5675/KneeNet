@@ -235,7 +235,15 @@ def read_dicome_and_convert(content_file_path='/gpfs/data/denizlab/Datasets/OAI_
                 data_files = os.listdir(data_path)
                 for data_file in data_files:
                     img, data, img_before = image_preprocessing(os.path.join(data_path, data_file))
+                    print(data)
+                    print(img.shape)
+                    # modify file and save it
                     data.PixelData = img.tobytes()
+                    row,col = img.shape
+                    data.Rows = row
+                    data.Columns = col
+                    print(data)
+                    time.sleep(60)
                     file_path = os.path.join(save_dir,patientID,studyDate,barCode)
                     if not os.path.exists(file_path):
                         os.makedirs(file_path)
@@ -277,7 +285,11 @@ def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_
                 data_files = os.listdir(data_path)
                 for data_file in data_files:
                     img,data,img_before = image_preprocessing(os.path.join(data_path,data_file))
-                    left_svm, right_svm = image_preprocessing_oulu(data_path,data_file)
+                    try:
+                        spacing = data.PixelSpacing[0]
+                    except Exception:
+                        spacing = 0.2
+                    left_svm, right_svm = image_preprocessing_oulu2(img,spacing)
                     left,right = extract_knee(img,0), extract_knee(img,1)
                     left_kl,right_kl = get_KL(KL_Grade,int(patientID),2),get_KL(KL_Grade,int(patientID),1)
                     # create hdf5 file
@@ -376,6 +388,31 @@ def image_preprocessing_oulu(data_folder,file):
     patch_left, patch_right = read_file_oulu(os.path.join(data_folder, file), bbox)
     return patch_left,patch_right
 
+def image_preprocessing_oulu2(img,spacing):
+    img2model = img.astype(np.uint8)
+    localizer = KneeLocalizer()
+
+    bbox = localizer.predict(img2model,spacing) # output a string
+    x1, y1, x2, y2 = bbox[0]
+    cx = x1 + (x2 - x1) // 2  # compute center of x
+    cy = y1 + (y2 - y1) // 2  # compute cneter of y
+
+    x1 = cx - 512
+    x2 = cx + 512
+    y1 = cy - 512
+    y2 = cy + 512
+    patch_left = img[y1:y2, x1:x2]
+    x1, y1, x2, y2 = bbox[1]
+    cx = x1 + (x2 - x1) // 2  # compute center of x
+    cy = y1 + (y2 - y1) // 2  # compute cneter of y
+
+    x1 = cx - 512
+    x2 = cx + 512
+    y1 = cy - 512
+    y2 = cy + 512
+    patch_right = img[y1:y2, x1:x2]
+    return patch_left,patch_right
+
 def read_file_oulu(file_path,bbox,sizemm=140,pad=300):
     '''
     :param file_path: file path the DICOM Data
@@ -459,5 +496,5 @@ def read_file_oulu(file_path,bbox,sizemm=140,pad=300):
     return patch_left, patch_right
 
 if __name__ == '__main__':
-    read_dicome_and_convert()
+    read_dicome_and_process()
     print('Finished')
