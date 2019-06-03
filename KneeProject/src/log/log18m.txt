@@ -1,3 +1,0 @@
-Total processed: 0
-Knee not found by SVM: 0
-18m
