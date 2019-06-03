@@ -1,0 +1,8 @@
+#BSUB -n 4
+#BSUB -e /gpfs/data/denizlab/Users/bz1030/model/model_torch/model_from_scratch/train%J.err
+#BSUB -o /gpfs/data/denizlab/Users/bz1030/model/model_torch/model_from_scratch/train%J.out
+#BSUB -gpu "num=1:mode=shared:j_exclusive=yes"
+export PATH=/gpfs/share/skynet/apps/anaconda3/bin:$PATH
+source activate pytorch-env
+source /opt/DL/pytorch/bin/pytorch-activate
+python /gpfs/data/denizlab/Users/bz1030/model/model_torch/model_from_scratch/train.py %J

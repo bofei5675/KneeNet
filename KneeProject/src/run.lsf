@@ -1,0 +1,8 @@
+#!/bin/bash
+#BSUB -n 2
+#BSUB -e /gpfs/data/denizlab/Users/bz1030/src/log/run%J.err
+#BSUB -o /gpfs/data/denizlab/Users/bz1030/src/log/run%J.out
+
+export month="96m"
+source /gpfs/data/denizlab/Users/bz1030/src/setup.sh
+python /gpfs/data/denizlab/Users/bz1030/src/main.py --month "$month" > log/log"$month".txt

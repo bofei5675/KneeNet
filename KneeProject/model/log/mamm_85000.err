@@ -1,0 +1,11 @@
+2019-04-28 20:53:21.414352: E tensorflow/stream_executor/cuda/cuda_driver.cc:397] failed call to cuInit: CUDA_ERROR_NO_DEVICE
+2019-04-28 20:53:21.419015: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:163] retrieving CUDA diagnostic information for host: skygpu01
+2019-04-28 20:53:21.419197: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:170] hostname: skygpu01
+2019-04-28 20:53:21.419413: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:194] libcuda reported version is: 418.40.4
+2019-04-28 20:53:21.419602: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:198] kernel reported version is: 418.40.4
+2019-04-28 20:53:21.419753: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:305] kernel version seems to match DSO: 418.40.4
+2019-04-28 20:53:21.420059: I tensorflow/core/common_runtime/direct_session.cc:288] Device mapping:
+
+/gpfs/share/skynet/apps/anaconda3/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.

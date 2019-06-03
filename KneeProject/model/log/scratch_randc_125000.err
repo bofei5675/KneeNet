@@ -1,0 +1,22 @@
+2019-04-28 20:55:35.306166: E tensorflow/stream_executor/cuda/cuda_driver.cc:397] failed call to cuInit: CUDA_ERROR_NO_DEVICE
+2019-04-28 20:55:35.312912: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:163] retrieving CUDA diagnostic information for host: skygpu17
+2019-04-28 20:55:35.313118: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:170] hostname: skygpu17
+2019-04-28 20:55:35.313365: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:194] libcuda reported version is: 418.40.4
+2019-04-28 20:55:35.313632: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:198] kernel reported version is: 418.40.4
+2019-04-28 20:55:35.313823: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:305] kernel version seems to match DSO: 418.40.4
+2019-04-28 20:55:35.314187: I tensorflow/core/common_runtime/direct_session.cc:288] Device mapping:
+
+/gpfs/share/skynet/apps/anaconda3/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.
+2019-04-29 09:11:57.137307: E tensorflow/stream_executor/cuda/cuda_driver.cc:397] failed call to cuInit: CUDA_ERROR_NO_DEVICE
+2019-04-29 09:11:57.142133: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:163] retrieving CUDA diagnostic information for host: skygpu15
+2019-04-29 09:11:57.142308: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:170] hostname: skygpu15
+2019-04-29 09:11:57.142523: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:194] libcuda reported version is: 418.40.4
+2019-04-29 09:11:57.142734: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:198] kernel reported version is: 418.40.4
+2019-04-29 09:11:57.142897: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:305] kernel version seems to match DSO: 418.40.4
+2019-04-29 09:11:57.143167: I tensorflow/core/common_runtime/direct_session.cc:288] Device mapping:
+
+/gpfs/share/skynet/apps/anaconda3/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+Using TensorFlow backend.

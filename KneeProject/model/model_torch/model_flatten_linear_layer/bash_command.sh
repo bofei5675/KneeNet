@@ -1,0 +1,1 @@
+bsub -o %J.out -e %J.err -n 10 -gpu "num=1:mode=shared:j_exclusive=yes" python evaluate.py

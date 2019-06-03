@@ -1,0 +1,36 @@
+
+
+model_torch - store all model wrote by torch
+    model_flatten_linear_layer - since the image size changed, this file handle this issue by changing linear layer to larger one.
+
+
+
+Experiments:
+
+5/20 ResNet34 with changed linear layer
+Test losses 1.7898125279694796; Test mse [0.7785]; Test acc [0.5648]; Test Kappa 0.7545;
+Training took: 967.7842710018158 seconds
+This file has been discarded because the fully connected layer is wrong.
+
+
+5/27
+############### Model Finished ####################
+[[50  0 37  0  0]
+ [13  0 16  0  0]
+ [21  0 23  0  0]
+ [11  0 22  0  0]
+ [ 3  0  4  0  0]]
+73.0 200
+0.2195
+Test losses 1.427018610239029; Test mse [2.23]; Test acc [0.365]; Test Kappa 0.1492;
+Training took: 33.30069303512573 seconds
+
+Job number 1
+'''
+net = resnet34(pretrained=True)
+        net.avgpool = nn.AvgPool2d(28,28)
+        net.fc = nn.Linear(512,5)
+        net = net.to(device)
+        optimizer = optim.Adam(net.parameters(), lr=0.001,weight_decay=1e-4)
+'''
+

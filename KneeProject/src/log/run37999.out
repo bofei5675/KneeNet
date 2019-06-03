@@ -1,0 +1,50 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@skygpu10>
+Subject: Job 37999: <#!/bin/bash;#BSUB -n 2;#BSUB -e /gpfs/data/denizlab/Users/bz1030/src/log/run%J.err;#BSUB -o /gpfs/data/denizlab/Users/bz1030/src/log/run%J.out; export month="18m";source /gpfs/data/denizlab/Users/bz1030/src/setup.sh;python /gpfs/data/denizlab/Users/bz1030/src/main.py --month "$month" > log/log"$month".txt> in cluster <SkynetCluster> Done
+
+Job <#!/bin/bash;#BSUB -n 2;#BSUB -e /gpfs/data/denizlab/Users/bz1030/src/log/run%J.err;#BSUB -o /gpfs/data/denizlab/Users/bz1030/src/log/run%J.out; export month="18m";source /gpfs/data/denizlab/Users/bz1030/src/setup.sh;python /gpfs/data/denizlab/Users/bz1030/src/main.py --month "$month" > log/log"$month".txt> was submitted from host <skynet01> by user <bz1030> in cluster <SkynetCluster> at Sun May 19 15:22:15 2019
+Job was executed on host(s) <2*skygpu10>, in queue <normal>, as user <bz1030> in cluster <SkynetCluster> at Sun May 19 15:22:21 2019
+</home/bz1030> was used as the home directory.
+</gpfs/data/denizlab/Users/bz1030/src> was used as the working directory.
+Started at Sun May 19 15:22:21 2019
+Terminated at Sun May 19 15:22:48 2019
+Results reported at Sun May 19 15:22:48 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -n 2
+#BSUB -e /gpfs/data/denizlab/Users/bz1030/src/log/run%J.err
+#BSUB -o /gpfs/data/denizlab/Users/bz1030/src/log/run%J.out
+
+export month="18m"
+source /gpfs/data/denizlab/Users/bz1030/src/setup.sh
+python /gpfs/data/denizlab/Users/bz1030/src/main.py --month "$month" > log/log"$month".txt
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   2.95 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     4.00 GB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              1
+    Max Threads :                                2
+    Run time :                                   24 sec.
+    Turnaround time :                            33 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file </gpfs/data/denizlab/Users/bz1030/src/log/run37999.err> for stderr output of this job.
+

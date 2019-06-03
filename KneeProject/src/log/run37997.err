@@ -1,0 +1,8 @@
+/home/bz1030/.conda/envs/knee_localizer/lib/python3.6/site-packages/scipy/ndimage/interpolation.py:583: UserWarning: From scipy 0.13.0, the output shape of zoom() is calculated with round() instead of int() - for these inputs the size of the returned array has changed.
+  "the returned array has changed.", UserWarning)
+/home/bz1030/.conda/envs/knee_localizer/lib/python3.6/site-packages/pydicom/filereader.py:292: UserWarning: Incorrect value for Specific Character Set 'ISO_2022_IR_6' - assuming 'ISO 2022 IR 6'
+  encoding = convert_encodings(encoding)
+/home/bz1030/.conda/envs/knee_localizer/lib/python3.6/site-packages/pydicom/filereader.py:413: UserWarning: Incorrect value for Specific Character Set 'ISO_2022_IR_6' - assuming 'ISO 2022 IR 6'
+  encoding = convert_encodings(char_set)
+/home/bz1030/.conda/envs/knee_localizer/lib/python3.6/site-packages/pydicom/dataset.py:568: UserWarning: Incorrect value for Specific Character Set 'ISO_2022_IR_6' - assuming 'ISO 2022 IR 6'
+  char_set = convert_encodings(char_set)

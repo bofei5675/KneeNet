@@ -1,0 +1,6 @@
+#BSUB -n 4
+#BSUB -e /gpfs/data/denizlab/Users/bz1030/model/log/mamm_randc_125000.err
+#BSUB -o /gpfs/data/denizlab/Users/bz1030/model/log/mamm_randc_125000.out
+
+source /gpfs/data/denizlab/Users/bz1030/model/tf.sh
+python /gpfs/data/denizlab/Users/bz1030/model/validation.py

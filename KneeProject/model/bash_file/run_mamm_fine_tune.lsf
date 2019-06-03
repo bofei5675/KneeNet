@@ -1,0 +1,7 @@
+#BSUB -n 4
+#BSUB -e /gpfs/data/denizlab/Users/bz1030/model/model_weights/mammogram/mamm_fine_tune_0_train2.err
+#BSUB -o /gpfs/data/denizlab/Users/bz1030/model/model_weights/mammogram/mamm_fine_tune_0_train2.out
+#BSUB -gpu "num=1:mode=shared:j_exclusive=yes"
+
+source /gpfs/data/denizlab/Users/bz1030/model/tf.sh
+python /gpfs/data/denizlab/Users/bz1030/model/train_mamm.py 0

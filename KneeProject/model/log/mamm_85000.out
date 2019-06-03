@@ -1,0 +1,2292 @@
+Load model ...
+Load test data summary ...
+Test set 4487
+Evaluation:
+
+8/8 [==============================] - 37s 5s/step
+This batch loss 1.5097744464874268, acc 0.5, overall 0.5
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8777686357498169, acc 0.5, overall 0.5
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5172736048698425, acc 0.625, overall 0.5416666666666666
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.3154853582382202, acc 1.0, overall 0.65625
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8047276735305786, acc 0.625, overall 0.65
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.5224480628967285, acc 0.375, overall 0.6041666666666666
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.089904546737671, acc 0.625, overall 0.6071428571428571
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8240175247192383, acc 0.75, overall 0.625
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6328161954879761, acc 0.75, overall 0.6388888888888888
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9186677932739258, acc 0.375, overall 0.6125
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.5151576995849609, acc 0.625, overall 0.6136363636363636
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.551579475402832, acc 0.875, overall 0.6354166666666666
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.3593277335166931, acc 0.875, overall 0.6538461538461539
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.501920223236084, acc 0.375, overall 0.6339285714285714
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.0139309167861938, acc 0.5, overall 0.625
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.7290867567062378, acc 0.375, overall 0.609375
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.3873025178909302, acc 0.75, overall 0.6176470588235294
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.2717236280441284, acc 0.5, overall 0.6111111111111112
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.0065900087356567, acc 0.625, overall 0.6118421052631579
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.4817713499069214, acc 0.5, overall 0.60625
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6619800329208374, acc 0.875, overall 0.6190476190476191
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8341565728187561, acc 0.625, overall 0.6193181818181818
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9333680272102356, acc 0.5, overall 0.6141304347826086
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.9020942449569702, acc 0.625, overall 0.6145833333333334
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.3806799352169037, acc 0.875, overall 0.625
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6133772730827332, acc 0.625, overall 0.625
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.602500319480896, acc 0.75, overall 0.6296296296296297
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.46170127391815186, acc 0.75, overall 0.6339285714285714
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7118896245956421, acc 0.75, overall 0.6379310344827587
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.093902349472046, acc 0.625, overall 0.6375
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9093900322914124, acc 0.375, overall 0.6290322580645161
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.3474268913269043, acc 0.625, overall 0.62890625
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.0541856288909912, acc 0.625, overall 0.6287878787878788
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.0264997482299805, acc 0.5, overall 0.625
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8139743208885193, acc 0.625, overall 0.625
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8142987489700317, acc 0.5, overall 0.6215277777777778
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5401929616928101, acc 0.875, overall 0.6283783783783784
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.2809967994689941, acc 0.5, overall 0.625
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.23365238308906555, acc 1.0, overall 0.6346153846153846
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9215059280395508, acc 0.625, overall 0.634375
+Evaluation:
+
+8/8 [==============================] - 36s 5s/step
+This batch loss 0.582973837852478, acc 0.75, overall 0.6371951219512195
+Evaluation:
+
+8/8 [==============================] - 36s 5s/step
+This batch loss 0.6603254079818726, acc 0.75, overall 0.6398809523809523
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6803371906280518, acc 0.75, overall 0.6424418604651163
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.44358891248703003, acc 0.75, overall 0.6448863636363636
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.0835850238800049, acc 0.375, overall 0.6388888888888888
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5933840870857239, acc 0.875, overall 0.6440217391304348
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.128920316696167, acc 0.25, overall 0.6356382978723404
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5667404532432556, acc 0.75, overall 0.6380208333333334
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.42475923895835876, acc 0.875, overall 0.6428571428571429
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6648597717285156, acc 0.625, overall 0.6425
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.01577627658844, acc 0.625, overall 0.6421568627450981
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8029317259788513, acc 0.625, overall 0.6418269230769231
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9507350325584412, acc 0.75, overall 0.6438679245283019
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9737685918807983, acc 0.5, overall 0.6412037037037037
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.698011040687561, acc 0.875, overall 0.6454545454545455
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7157094478607178, acc 0.5, overall 0.6428571428571429
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.1491279602050781, acc 0.375, overall 0.6381578947368421
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.41609153151512146, acc 0.875, overall 0.6422413793103449
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6628677248954773, acc 0.75, overall 0.6440677966101694
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8516824245452881, acc 0.75, overall 0.6458333333333334
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6586290597915649, acc 0.625, overall 0.6454918032786885
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.9026644229888916, acc 0.5, overall 0.6431451612903226
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.148151159286499, acc 0.5, overall 0.6408730158730159
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.40693414211273193, acc 0.75, overall 0.642578125
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.9889260530471802, acc 0.625, overall 0.6423076923076924
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8933194279670715, acc 0.625, overall 0.6420454545454546
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.1668336391448975, acc 0.5, overall 0.6399253731343284
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.5145514011383057, acc 0.5, overall 0.6378676470588235
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7427775859832764, acc 0.625, overall 0.6376811594202898
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.2304294109344482, acc 0.5, overall 0.6357142857142857
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.4486097991466522, acc 0.875, overall 0.6390845070422535
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9247326850891113, acc 0.625, overall 0.6388888888888888
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.4983710050582886, acc 0.75, overall 0.6404109589041096
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6251273155212402, acc 0.75, overall 0.6418918918918919
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5372158885002136, acc 0.875, overall 0.645
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9342541694641113, acc 0.625, overall 0.6447368421052632
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4118691384792328, acc 0.875, overall 0.6477272727272727
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.3905017673969269, acc 0.75, overall 0.6490384615384616
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.42497920989990234, acc 0.875, overall 0.6518987341772152
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5992963314056396, acc 0.625, overall 0.6515625
+Evaluation:
+
+8/8 [==============================] - 36s 5s/step
+This batch loss 0.7732470035552979, acc 0.625, overall 0.6512345679012346
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.604601263999939, acc 0.75, overall 0.6524390243902439
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5408442616462708, acc 0.875, overall 0.6551204819277109
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6264091730117798, acc 0.625, overall 0.6547619047619048
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6680020093917847, acc 0.75, overall 0.6558823529411765
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7577901482582092, acc 0.625, overall 0.6555232558139535
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5921274423599243, acc 0.75, overall 0.6566091954022989
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7519882917404175, acc 0.625, overall 0.65625
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6141750812530518, acc 0.75, overall 0.6573033707865169
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6739813685417175, acc 0.75, overall 0.6583333333333333
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6642351746559143, acc 0.625, overall 0.657967032967033
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.33863523602485657, acc 1.0, overall 0.6616847826086957
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.566788375377655, acc 0.75, overall 0.6626344086021505
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.3957582712173462, acc 0.875, overall 0.6648936170212766
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.3608537018299103, acc 1.0, overall 0.6684210526315789
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7361478805541992, acc 0.75, overall 0.6692708333333334
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6803650856018066, acc 0.75, overall 0.6701030927835051
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5676383972167969, acc 0.875, overall 0.6721938775510204
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.4913560450077057, acc 1.0, overall 0.6755050505050505
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5297693610191345, acc 0.75, overall 0.67625
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5761718153953552, acc 0.75, overall 0.676980198019802
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.15691760182380676, acc 1.0, overall 0.6801470588235294
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8741191029548645, acc 0.75, overall 0.6808252427184466
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.31689852476119995, acc 1.0, overall 0.6838942307692307
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.8561317920684814, acc 0.75, overall 0.6845238095238095
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.0841975212097168, acc 0.5, overall 0.6827830188679245
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6389712691307068, acc 0.75, overall 0.6834112149532711
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.3861108124256134, acc 0.875, overall 0.6851851851851852
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4639438986778259, acc 0.875, overall 0.6869266055045872
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.765640139579773, acc 0.75, overall 0.6875
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4600282609462738, acc 0.75, overall 0.6880630630630631
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4834969937801361, acc 0.875, overall 0.6897321428571429
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.49442288279533386, acc 0.75, overall 0.6902654867256637
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8104420900344849, acc 0.625, overall 0.6896929824561403
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6679898500442505, acc 0.875, overall 0.691304347826087
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5087988972663879, acc 0.875, overall 0.6928879310344828
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.48301199078559875, acc 0.75, overall 0.6933760683760684
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.914122462272644, acc 0.625, overall 0.6927966101694916
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6081091165542603, acc 0.875, overall 0.694327731092437
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6806302070617676, acc 0.5, overall 0.6927083333333334
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8757919073104858, acc 0.75, overall 0.6931818181818182
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.121037244796753, acc 0.375, overall 0.6905737704918032
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.38640841841697693, acc 1.0, overall 0.693089430894309
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.747003972530365, acc 0.75, overall 0.6935483870967742
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.3572150468826294, acc 0.5, overall 0.692
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.3212425112724304, acc 0.875, overall 0.6934523809523809
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.2188068628311157, acc 0.625, overall 0.6929133858267716
+Evaluation:
+
+8/8 [==============================] - 36s 5s/step
+This batch loss 1.1433253288269043, acc 0.625, overall 0.6923828125
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.0002739429473877, acc 0.375, overall 0.689922480620155
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.9870790839195251, acc 0.625, overall 0.6894230769230769
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6910024881362915, acc 0.75, overall 0.6898854961832062
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.7910283803939819, acc 0.5, overall 0.6884469696969697
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7462118864059448, acc 0.75, overall 0.6889097744360902
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6728634834289551, acc 0.75, overall 0.6893656716417911
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5554531812667847, acc 0.75, overall 0.6898148148148148
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7740023136138916, acc 0.625, overall 0.6893382352941176
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5498538017272949, acc 0.875, overall 0.6906934306569343
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6016599535942078, acc 0.75, overall 0.6911231884057971
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.242628812789917, acc 0.375, overall 0.6888489208633094
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6769457459449768, acc 0.875, overall 0.6901785714285714
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6205146312713623, acc 0.75, overall 0.6906028368794326
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5421217083930969, acc 0.875, overall 0.6919014084507042
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6195839643478394, acc 0.5, overall 0.6905594405594405
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5415511727333069, acc 0.75, overall 0.6909722222222222
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.2413891553878784, acc 0.5, overall 0.6896551724137931
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6684401035308838, acc 0.875, overall 0.6909246575342466
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6077364683151245, acc 0.75, overall 0.6913265306122449
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.4131330251693726, acc 0.375, overall 0.6891891891891891
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9001965522766113, acc 0.5, overall 0.6879194630872483
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9607230424880981, acc 0.625, overall 0.6875
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.551711916923523, acc 0.75, overall 0.6879139072847682
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.0961488485336304, acc 0.5, overall 0.6866776315789473
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8307446241378784, acc 0.75, overall 0.6870915032679739
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.8909329771995544, acc 0.625, overall 0.6866883116883117
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.44085749983787537, acc 0.875, overall 0.6879032258064516
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9302137494087219, acc 0.625, overall 0.6875
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.3743834495544434, acc 0.5, overall 0.6863057324840764
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9466590881347656, acc 0.75, overall 0.6867088607594937
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.3461278676986694, acc 0.375, overall 0.684748427672956
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.43695470690727234, acc 0.875, overall 0.6859375
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.3840067684650421, acc 0.75, overall 0.6863354037267081
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9843045473098755, acc 0.5, overall 0.6851851851851852
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.0971986055374146, acc 0.625, overall 0.6848159509202454
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4563652276992798, acc 0.875, overall 0.6859756097560976
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4336293339729309, acc 0.875, overall 0.6871212121212121
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.18962714076042175, acc 1.0, overall 0.6890060240963856
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.192275881767273, acc 0.625, overall 0.688622754491018
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.815466046333313, acc 0.75, overall 0.6889880952380952
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.3901371359825134, acc 0.75, overall 0.6893491124260355
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6819753050804138, acc 0.75, overall 0.6897058823529412
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4269729554653168, acc 0.875, overall 0.6907894736842105
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.5347983837127686, acc 0.75, overall 0.6911337209302325
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7354892492294312, acc 0.625, overall 0.6907514450867052
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.8306331038475037, acc 0.5, overall 0.6896551724137931
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.1407530307769775, acc 0.625, overall 0.6892857142857143
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6833945512771606, acc 0.75, overall 0.6896306818181818
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5801264643669128, acc 0.875, overall 0.690677966101695
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8695335388183594, acc 0.25, overall 0.6882022471910112
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6885222792625427, acc 0.75, overall 0.6885474860335196
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.36556366086006165, acc 0.875, overall 0.6895833333333333
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4023013412952423, acc 1.0, overall 0.6912983425414365
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.6469502449035645, acc 0.5, overall 0.6902472527472527
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9976909160614014, acc 0.75, overall 0.6905737704918032
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6172401905059814, acc 0.75, overall 0.6908967391304348
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6412299871444702, acc 0.625, overall 0.6905405405405406
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.42525285482406616, acc 0.875, overall 0.6915322580645161
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.41867178678512573, acc 0.75, overall 0.6918449197860963
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8603895306587219, acc 0.625, overall 0.6914893617021277
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7803864479064941, acc 0.375, overall 0.6898148148148148
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9033550024032593, acc 0.75, overall 0.6901315789473684
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7134285569190979, acc 0.625, overall 0.6897905759162304
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.2449755668640137, acc 0.5, overall 0.6888020833333334
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6438421010971069, acc 0.75, overall 0.689119170984456
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9496370553970337, acc 0.375, overall 0.6875
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.125458002090454, acc 0.5, overall 0.6865384615384615
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7417278289794922, acc 0.625, overall 0.6862244897959183
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5137064456939697, acc 0.75, overall 0.6865482233502538
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9245710372924805, acc 0.625, overall 0.6862373737373737
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.48077231645584106, acc 1.0, overall 0.6878140703517588
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8367727398872375, acc 0.5, overall 0.686875
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.3060935139656067, acc 1.0, overall 0.6884328358208955
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.7690756916999817, acc 0.625, overall 0.6881188118811881
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8111393451690674, acc 0.625, overall 0.687807881773399
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.49574992060661316, acc 0.875, overall 0.6887254901960784
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.3109428882598877, acc 0.375, overall 0.6871951219512196
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7034996151924133, acc 0.75, overall 0.6875
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.891429603099823, acc 0.5, overall 0.6865942028985508
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.001225233078003, acc 0.5, overall 0.6856971153846154
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.2641550302505493, acc 0.5, overall 0.6848086124401914
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7875359058380127, acc 0.75, overall 0.6851190476190476
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5698187351226807, acc 0.75, overall 0.6854265402843602
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.386220782995224, acc 0.75, overall 0.6857311320754716
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.852125883102417, acc 0.625, overall 0.6854460093896714
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.3420312404632568, acc 0.625, overall 0.6851635514018691
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.00478994846344, acc 0.5, overall 0.6843023255813954
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6844269037246704, acc 0.625, overall 0.6840277777777778
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.1555628776550293, acc 0.375, overall 0.6826036866359447
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.018817663192749, acc 0.625, overall 0.6823394495412844
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.0381766557693481, acc 0.625, overall 0.6820776255707762
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.2522540092468262, acc 0.5, overall 0.68125
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.44907087087631226, acc 1.0, overall 0.6826923076923077
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.0411816835403442, acc 0.375, overall 0.6813063063063063
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6685346364974976, acc 0.75, overall 0.6816143497757847
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6655217409133911, acc 0.875, overall 0.6824776785714286
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6127701997756958, acc 0.625, overall 0.6822222222222222
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8708943128585815, acc 0.625, overall 0.6819690265486725
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6281636953353882, acc 0.75, overall 0.6822687224669604
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8265784978866577, acc 0.75, overall 0.6825657894736842
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.67546147108078, acc 0.875, overall 0.6834061135371179
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.0889554023742676, acc 0.5, overall 0.6826086956521739
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7714213132858276, acc 0.625, overall 0.6823593073593074
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9013067483901978, acc 0.625, overall 0.6821120689655172
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.38958337903022766, acc 0.875, overall 0.6829399141630901
+Evaluation:
+
+8/8 [==============================] - 36s 5s/step
+This batch loss 0.8662164211273193, acc 0.5, overall 0.6821581196581197
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6127845048904419, acc 0.75, overall 0.6824468085106383
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6951642036437988, acc 0.875, overall 0.6832627118644068
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.3540557622909546, acc 0.5, overall 0.6824894514767933
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9806016087532043, acc 0.5, overall 0.6817226890756303
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.692373514175415, acc 0.5, overall 0.6809623430962343
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.365130752325058, acc 0.75, overall 0.68125
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.188622236251831, acc 0.5, overall 0.6804979253112033
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.5344760417938232, acc 0.5, overall 0.6797520661157025
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.8165982365608215, acc 0.625, overall 0.6795267489711934
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 2.042440414428711, acc 0.25, overall 0.6777663934426229
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.4840766191482544, acc 0.75, overall 0.6780612244897959
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.7369095087051392, acc 0.625, overall 0.6778455284552846
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5669179558753967, acc 0.75, overall 0.6781376518218624
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.3926394581794739, acc 0.875, overall 0.6789314516129032
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6946319341659546, acc 0.75, overall 0.6792168674698795
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.4315661191940308, acc 0.375, overall 0.678
+Evaluation:
+
+8/8 [==============================] - 36s 5s/step
+This batch loss 0.7214392423629761, acc 0.625, overall 0.6777888446215139
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.7115998268127441, acc 0.625, overall 0.6775793650793651
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.651145577430725, acc 0.375, overall 0.6763833992094862
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4398229122161865, acc 0.875, overall 0.6771653543307087
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8359125256538391, acc 0.5, overall 0.6764705882352942
+Evaluation:
+
+8/8 [==============================] - 37s 5s/step
+This batch loss 0.6934804320335388, acc 0.875, overall 0.67724609375
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7792723178863525, acc 0.625, overall 0.6770428015564203
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.6456334590911865, acc 0.125, overall 0.6749031007751938
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.2984445095062256, acc 0.5, overall 0.6742277992277992
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6520501375198364, acc 0.625, overall 0.6740384615384616
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.4697718620300293, acc 0.875, overall 0.6748084291187739
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.3928191363811493, acc 0.875, overall 0.6755725190839694
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6189323663711548, acc 0.75, overall 0.6758555133079848
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.48249465227127075, acc 0.875, overall 0.6766098484848485
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5938625335693359, acc 0.625, overall 0.6764150943396227
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6891179084777832, acc 0.5, overall 0.6757518796992481
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.7528541684150696, acc 0.625, overall 0.675561797752809
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.0907347202301025, acc 0.625, overall 0.6753731343283582
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.4810512363910675, acc 0.75, overall 0.6756505576208178
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.625131368637085, acc 0.875, overall 0.6763888888888889
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.45505020022392273, acc 0.875, overall 0.6771217712177122
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4353352189064026, acc 0.875, overall 0.6778492647058824
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8277469873428345, acc 0.625, overall 0.6776556776556777
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5281559824943542, acc 0.875, overall 0.6783759124087592
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.29813897609710693, acc 0.875, overall 0.6790909090909091
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6355703473091125, acc 0.75, overall 0.6793478260869565
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.92447429895401, acc 0.625, overall 0.6791516245487365
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8355416059494019, acc 0.625, overall 0.6789568345323741
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.7885687947273254, acc 0.5, overall 0.6783154121863799
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5738352537155151, acc 0.75, overall 0.6785714285714286
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8708234429359436, acc 0.5, overall 0.6779359430604982
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8964884281158447, acc 0.625, overall 0.6777482269503546
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9190033674240112, acc 0.625, overall 0.6775618374558304
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.37311214208602905, acc 0.875, overall 0.6782570422535211
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8146188259124756, acc 0.375, overall 0.6771929824561403
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.5986546277999878, acc 0.625, overall 0.6770104895104895
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9505075216293335, acc 0.375, overall 0.6759581881533101
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7530341148376465, acc 0.75, overall 0.6762152777777778
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.45479512214660645, acc 1.0, overall 0.6773356401384083
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.4414799213409424, acc 0.5, overall 0.6767241379310345
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6254087686538696, acc 0.875, overall 0.677405498281787
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6671392917633057, acc 0.75, overall 0.677654109589041
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.4246265888214111, acc 0.25, overall 0.6761945392491467
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.7187122106552124, acc 0.625, overall 0.6760204081632653
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6050446629524231, acc 0.75, overall 0.676271186440678
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6386958956718445, acc 0.75, overall 0.6765202702702703
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.0256152153015137, acc 0.625, overall 0.6763468013468014
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8748760223388672, acc 0.75, overall 0.6765939597315436
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8730940818786621, acc 0.5, overall 0.6760033444816054
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.9781424403190613, acc 0.625, overall 0.6758333333333333
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.8292575478553772, acc 0.75, overall 0.6760797342192691
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.698551595211029, acc 0.75, overall 0.6763245033112583
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5664764046669006, acc 0.875, overall 0.676980198019802
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.600830078125, acc 0.75, overall 0.6772203947368421
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.4586186408996582, acc 0.875, overall 0.6778688524590164
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.3481667041778564, acc 0.375, overall 0.6768790849673203
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.1952357292175293, acc 0.75, overall 0.6771172638436482
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.5027302503585815, acc 1.0, overall 0.6781655844155844
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.2699600458145142, acc 0.5, overall 0.6775889967637541
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7695379257202148, acc 0.5, overall 0.677016129032258
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.2793805599212646, acc 0.375, overall 0.6760450160771704
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8955111503601074, acc 0.625, overall 0.6758814102564102
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.3499739170074463, acc 0.875, overall 0.6765175718849841
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.5407792329788208, acc 0.875, overall 0.6771496815286624
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4220787286758423, acc 1.0, overall 0.6781746031746032
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5396638512611389, acc 0.75, overall 0.6784018987341772
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.5936238765716553, acc 0.75, overall 0.6786277602523659
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.3626277446746826, acc 0.875, overall 0.6792452830188679
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7684155702590942, acc 0.75, overall 0.6794670846394985
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.23041078448295593, acc 1.0, overall 0.68046875
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.49253037571907043, acc 0.875, overall 0.6810747663551402
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.4387061893939972, acc 1.0, overall 0.6820652173913043
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.42385733127593994, acc 0.875, overall 0.6826625386996904
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5577597618103027, acc 0.75, overall 0.6828703703703703
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.3840826451778412, acc 0.875, overall 0.6834615384615385
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.9580610990524292, acc 0.75, overall 0.6836656441717791
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7118762135505676, acc 0.625, overall 0.6834862385321101
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.41793352365493774, acc 1.0, overall 0.6844512195121951
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8191454410552979, acc 0.5, overall 0.6838905775075987
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7619788646697998, acc 0.625, overall 0.6837121212121212
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8922380805015564, acc 0.75, overall 0.6839123867069486
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6928028464317322, acc 0.625, overall 0.6837349397590361
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.1032705307006836, acc 0.75, overall 0.683933933933934
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.9373031258583069, acc 0.5, overall 0.6833832335329342
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7361299395561218, acc 0.5, overall 0.6828358208955224
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4074295461177826, acc 0.875, overall 0.6834077380952381
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.8047219514846802, acc 0.5, overall 0.6828635014836796
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.4778110980987549, acc 0.625, overall 0.6826923076923077
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.677533745765686, acc 0.625, overall 0.6825221238938053
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5175081491470337, acc 0.75, overall 0.6827205882352941
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6635497808456421, acc 0.75, overall 0.6829178885630498
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8378399610519409, acc 0.625, overall 0.6827485380116959
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5121565461158752, acc 0.875, overall 0.6833090379008746
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8841720223426819, acc 0.625, overall 0.6831395348837209
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5965129137039185, acc 0.75, overall 0.6833333333333333
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7809128165245056, acc 0.625, overall 0.6831647398843931
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.600918710231781, acc 0.75, overall 0.68335734870317
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8801626563072205, acc 0.625, overall 0.6831896551724138
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.5560225248336792, acc 0.75, overall 0.6833810888252149
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.5263516306877136, acc 0.875, overall 0.6839285714285714
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8178932666778564, acc 0.75, overall 0.6841168091168092
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.515035092830658, acc 0.75, overall 0.6843039772727273
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5482370853424072, acc 0.625, overall 0.6841359773371105
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.575767993927002, acc 0.75, overall 0.684322033898305
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5043179392814636, acc 0.875, overall 0.6848591549295775
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9766987562179565, acc 0.625, overall 0.6846910112359551
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.3648328185081482, acc 0.875, overall 0.6852240896358543
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8128378391265869, acc 0.625, overall 0.6850558659217877
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.45727869868278503, acc 1.0, overall 0.685933147632312
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.2119357585906982, acc 0.5, overall 0.6854166666666667
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.2815033197402954, acc 0.5, overall 0.6849030470914127
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.620407223701477, acc 0.5, overall 0.6843922651933702
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7618561387062073, acc 0.75, overall 0.6845730027548209
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.3153184950351715, acc 0.875, overall 0.6850961538461539
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7797983884811401, acc 0.625, overall 0.684931506849315
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.9032528400421143, acc 0.625, overall 0.6847677595628415
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.2255449295043945, acc 0.5, overall 0.6842643051771117
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5031217336654663, acc 0.875, overall 0.6847826086956522
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5938077569007874, acc 0.625, overall 0.684620596205962
+Evaluation:
+
+8/8 [==============================] - 36s 5s/step
+This batch loss 0.5364693403244019, acc 0.875, overall 0.6851351351351351
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.833553671836853, acc 0.625, overall 0.6849730458221024
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7565498352050781, acc 0.75, overall 0.6851478494623656
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9608601927757263, acc 0.75, overall 0.6853217158176944
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5466086864471436, acc 0.875, overall 0.6858288770053476
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6317645311355591, acc 0.75, overall 0.686
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9401260614395142, acc 0.75, overall 0.6861702127659575
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6129658222198486, acc 0.875, overall 0.6866710875331565
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8726122379302979, acc 0.625, overall 0.6865079365079365
+Evaluation:
+
+8/8 [==============================] - 36s 5s/step
+This batch loss 0.7519387006759644, acc 0.5, overall 0.6860158311345647
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5618847012519836, acc 0.75, overall 0.6861842105263158
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.8570955991744995, acc 0.75, overall 0.6863517060367454
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.2377590835094452, acc 1.0, overall 0.68717277486911
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7829205989837646, acc 0.625, overall 0.6870104438642297
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.9571435451507568, acc 0.625, overall 0.6868489583333334
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.24285650253295898, acc 1.0, overall 0.6876623376623376
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.7321335077285767, acc 0.75, overall 0.6878238341968912
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.5342826843261719, acc 0.875, overall 0.6883074935400517
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.7126414775848389, acc 0.75, overall 0.6884664948453608
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.5335752964019775, acc 0.75, overall 0.6886246786632391
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.5605095624923706, acc 0.75, overall 0.6887820512820513
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.0432839393615723, acc 0.625, overall 0.6886189258312021
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.7657637596130371, acc 0.75, overall 0.6887755102040817
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.1594970226287842, acc 0.125, overall 0.6873409669211196
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.26878464221954346, acc 1.0, overall 0.6881345177664975
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.46770063042640686, acc 0.75, overall 0.6882911392405063
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.367998480796814, acc 0.625, overall 0.6881313131313131
+Evaluation:
+
+8/8 [==============================] - 36s 5s/step
+This batch loss 0.8489720225334167, acc 0.5, overall 0.6876574307304786
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.1458555459976196, acc 0.5, overall 0.6871859296482412
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8400793075561523, acc 0.625, overall 0.6870300751879699
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7638857364654541, acc 0.625, overall 0.686875
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7820562720298767, acc 0.75, overall 0.6870324189526185
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5691508054733276, acc 0.75, overall 0.6871890547263682
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.05626380443573, acc 0.5, overall 0.6867245657568238
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8402803540229797, acc 0.625, overall 0.6865717821782178
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9299533367156982, acc 0.375, overall 0.6858024691358025
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8882739543914795, acc 0.625, overall 0.6856527093596059
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6268892288208008, acc 0.625, overall 0.6855036855036855
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5889235734939575, acc 0.75, overall 0.6856617647058824
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.8252713680267334, acc 0.625, overall 0.6855134474327629
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4232138395309448, acc 0.875, overall 0.6859756097560976
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.906327486038208, acc 0.5, overall 0.6855231143552312
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.3235063552856445, acc 0.375, overall 0.6847694174757282
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4842715859413147, acc 0.75, overall 0.6849273607748184
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8548712134361267, acc 0.5, overall 0.6844806763285024
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9628537893295288, acc 0.75, overall 0.6846385542168675
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6019344329833984, acc 0.875, overall 0.6850961538461539
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.1968803107738495, acc 1.0, overall 0.6858513189448441
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6908425092697144, acc 0.625, overall 0.6857057416267942
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.37427234649658203, acc 0.875, overall 0.6861575178997613
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.5221503376960754, acc 0.875, overall 0.6866071428571429
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5854582190513611, acc 0.625, overall 0.6864608076009501
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.6068570613861084, acc 0.125, overall 0.6851303317535545
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8588622212409973, acc 0.5, overall 0.6846926713947991
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6846628189086914, acc 0.625, overall 0.6845518867924528
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.1867787837982178, acc 0.5, overall 0.6841176470588235
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.4265660047531128, acc 0.5, overall 0.6836854460093896
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.616685152053833, acc 0.875, overall 0.6841334894613583
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.550888180732727, acc 0.75, overall 0.6842873831775701
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.3499671220779419, acc 1.0, overall 0.6850233100233101
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.5664424896240234, acc 0.25, overall 0.6840116279069768
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6406624913215637, acc 0.75, overall 0.6841647331786543
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5952084064483643, acc 0.75, overall 0.6843171296296297
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.3092508912086487, acc 0.875, overall 0.684757505773672
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.413854718208313, acc 0.75, overall 0.6849078341013825
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.133284568786621, acc 0.375, overall 0.6841954022988506
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.45937100052833557, acc 0.75, overall 0.6843463302752294
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.5497715473175049, acc 0.75, overall 0.6844965675057209
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.3706516921520233, acc 0.875, overall 0.684931506849315
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.99775230884552, acc 0.625, overall 0.6847949886104784
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.819983184337616, acc 0.5, overall 0.684375
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.702251672744751, acc 0.75, overall 0.6845238095238095
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.1849431991577148, acc 0.5, overall 0.684106334841629
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.4753483533859253, acc 0.25, overall 0.6831264108352144
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9855647087097168, acc 0.5, overall 0.682713963963964
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.2270445823669434, acc 0.5, overall 0.6823033707865168
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.318880558013916, acc 0.375, overall 0.6816143497757847
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.9363782405853271, acc 0.75, overall 0.6817673378076062
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.2208222150802612, acc 0.625, overall 0.681640625
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.41893357038497925, acc 1.0, overall 0.6823496659242761
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6830042600631714, acc 0.75, overall 0.6825
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6949577331542969, acc 0.75, overall 0.6826496674057649
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5321587324142456, acc 0.875, overall 0.683075221238938
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6735947132110596, acc 0.75, overall 0.6832229580573952
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7086857557296753, acc 0.875, overall 0.6836453744493393
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4304530620574951, acc 0.875, overall 0.6840659340659341
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5180811285972595, acc 0.875, overall 0.684484649122807
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.7694432735443115, acc 0.375, overall 0.6838074398249453
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.39784687757492065, acc 0.875, overall 0.6842248908296943
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.42291900515556335, acc 0.75, overall 0.684368191721133
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5505553483963013, acc 0.625, overall 0.6842391304347826
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.711389422416687, acc 0.625, overall 0.6841106290672451
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5747638940811157, acc 0.875, overall 0.6845238095238095
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.568612277507782, acc 0.75, overall 0.6846652267818575
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8050534725189209, acc 0.75, overall 0.6848060344827587
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9231189489364624, acc 0.5, overall 0.6844086021505377
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.34221675992012024, acc 0.875, overall 0.6848175965665236
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.2324615716934204, acc 0.625, overall 0.6846895074946466
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9570697546005249, acc 0.625, overall 0.6845619658119658
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.4078466296195984, acc 0.875, overall 0.6849680170575693
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.45107221603393555, acc 0.875, overall 0.685372340425532
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.5919362306594849, acc 0.75, overall 0.6855095541401274
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.676699697971344, acc 0.75, overall 0.685646186440678
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5301212072372437, acc 0.875, overall 0.686046511627907
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5240100622177124, acc 0.75, overall 0.6861814345991561
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.6990915536880493, acc 0.125, overall 0.685
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9351652264595032, acc 0.5, overall 0.6846113445378151
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.37957558035850525, acc 0.875, overall 0.6850104821802935
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7622531652450562, acc 0.75, overall 0.6851464435146444
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.1232649087905884, acc 0.5, overall 0.6847599164926931
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5337367057800293, acc 0.75, overall 0.6848958333333334
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6759138107299805, acc 0.75, overall 0.685031185031185
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4787359833717346, acc 0.625, overall 0.6849066390041494
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5530539751052856, acc 0.75, overall 0.6850414078674948
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.5346826910972595, acc 0.875, overall 0.6854338842975206
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.7128344774246216, acc 0.625, overall 0.6853092783505155
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7165403962135315, acc 0.75, overall 0.6854423868312757
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.852496862411499, acc 0.625, overall 0.6853182751540041
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6444070935249329, acc 0.75, overall 0.6854508196721312
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9763827323913574, acc 0.625, overall 0.6853271983640081
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.7373665571212769, acc 0.625, overall 0.685204081632653
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.7043378353118896, acc 0.375, overall 0.6845723014256619
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.47841310501098633, acc 0.75, overall 0.6847052845528455
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.673616349697113, acc 0.875, overall 0.6850912778904665
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8207119703292847, acc 0.625, overall 0.6849696356275303
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.2783496379852295, acc 0.875, overall 0.6853535353535354
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.46077877283096313, acc 0.875, overall 0.6857358870967742
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.731467604637146, acc 0.625, overall 0.6856136820925554
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6077044010162354, acc 0.75, overall 0.6857429718875502
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9218374490737915, acc 0.5, overall 0.685370741482966
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.4519853591918945, acc 0.375, overall 0.68475
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.434463232755661, acc 0.875, overall 0.685129740518962
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.44571536779403687, acc 0.875, overall 0.68550796812749
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.6033393144607544, acc 0.375, overall 0.6848906560636183
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7521405220031738, acc 0.75, overall 0.6850198412698413
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5169837474822998, acc 0.75, overall 0.6851485148514852
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7697582840919495, acc 0.75, overall 0.6852766798418972
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.1573573350906372, acc 0.375, overall 0.6846646942800789
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.884033739566803, acc 0.625, overall 0.6845472440944882
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.655543327331543, acc 0.75, overall 0.6846758349705304
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8817750811576843, acc 0.5, overall 0.6843137254901961
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5500019192695618, acc 0.875, overall 0.6846868884540117
+Evaluation:
+
+8/8 [==============================] - 36s 5s/step
+This batch loss 1.2606993913650513, acc 0.625, overall 0.6845703125
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.2078258991241455, acc 0.5, overall 0.6842105263157895
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5523273944854736, acc 0.75, overall 0.6843385214007782
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8805084228515625, acc 0.625, overall 0.6842233009708738
+Evaluation:
+
+8/8 [==============================] - 36s 5s/step
+This batch loss 0.5608525276184082, acc 0.75, overall 0.6843507751937985
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.537472665309906, acc 0.875, overall 0.6847195357833655
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4923073947429657, acc 0.75, overall 0.6848455598455598
+Evaluation:
+
+8/8 [==============================] - 36s 5s/step
+This batch loss 1.3121416568756104, acc 0.625, overall 0.6847302504816956
+Evaluation:
+
+8/8 [==============================] - 36s 5s/step
+This batch loss 0.5665928721427917, acc 0.75, overall 0.6848557692307692
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 2.4554874897003174, acc 0.25, overall 0.684021113243762
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.190352439880371, acc 0.625, overall 0.6839080459770115
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.3565485179424286, acc 0.875, overall 0.6842734225621415
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.157388687133789, acc 0.625, overall 0.6841603053435115
+Evaluation:
+
+8/8 [==============================] - 36s 5s/step
+This batch loss 0.4839053153991699, acc 0.875, overall 0.6845238095238095
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.43259698152542114, acc 0.75, overall 0.684648288973384
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6729645729064941, acc 0.625, overall 0.6845351043643264
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6402522325515747, acc 0.75, overall 0.6846590909090909
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.46183568239212036, acc 0.875, overall 0.6850189035916824
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9130058288574219, acc 0.875, overall 0.685377358490566
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.0732969045639038, acc 0.625, overall 0.6852636534839924
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6144485473632812, acc 0.75, overall 0.6853853383458647
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8815447092056274, acc 0.625, overall 0.6852720450281425
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7133430242538452, acc 0.75, overall 0.6853932584269663
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8505434393882751, acc 0.625, overall 0.6852803738317756
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5885387063026428, acc 0.875, overall 0.6856343283582089
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.0123690366744995, acc 0.625, overall 0.6855214152700186
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.4560559391975403, acc 0.875, overall 0.6858736059479554
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.009770393371582, acc 0.625, overall 0.6857606679035251
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.31434038281440735, acc 0.875, overall 0.6861111111111111
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.6656308174133301, acc 0.625, overall 0.6859981515711645
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8387182950973511, acc 0.625, overall 0.6858856088560885
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.959433913230896, acc 0.625, overall 0.6857734806629834
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5067168474197388, acc 0.75, overall 0.6858915441176471
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7743147611618042, acc 0.75, overall 0.6860091743119267
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.5445494651794434, acc 0.75, overall 0.6861263736263736
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7274953126907349, acc 0.625, overall 0.6860146252285192
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6647002696990967, acc 0.875, overall 0.6863594890510949
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.9741178154945374, acc 0.625, overall 0.686247723132969
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.8676244020462036, acc 0.375, overall 0.6856818181818182
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.9448328018188477, acc 0.625, overall 0.6855716878402904
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.5668407678604126, acc 0.375, overall 0.6850090579710145
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.3023878335952759, acc 0.625, overall 0.6849005424954792
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.408312439918518, acc 0.625, overall 0.6847924187725631
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 1.9150364398956299, acc 0.25, overall 0.684009009009009
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.7130157947540283, acc 0.75, overall 0.6841276978417267
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.5908230543136597, acc 0.75, overall 0.684245960502693
+Evaluation:
+
+8/8 [==============================] - 36s 4s/step
+This batch loss 0.6945501565933228, acc 0.75, overall 0.6843637992831542
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 1.0882630348205566, acc 0.25, overall 0.6835867620751341
+Evaluation:
+
+8/8 [==============================] - 35s 4s/step
+This batch loss 0.7855744361877441, acc 0.625, overall 0.6834821428571428
+Device mapping: no known devices.
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@skygpu01>
+Subject: Job 35709: <#BSUB -n 4;#BSUB -e /gpfs/data/denizlab/Users/bz1030/model/log/mamm_85000.err;#BSUB -o /gpfs/data/denizlab/Users/bz1030/model/log/mamm_85000.out; source /gpfs/data/denizlab/Users/bz1030/model/tf.sh;python /gpfs/data/denizlab/Users/bz1030/model/validation.py> in cluster <SkynetCluster> Done
+
+Job <#BSUB -n 4;#BSUB -e /gpfs/data/denizlab/Users/bz1030/model/log/mamm_85000.err;#BSUB -o /gpfs/data/denizlab/Users/bz1030/model/log/mamm_85000.out; source /gpfs/data/denizlab/Users/bz1030/model/tf.sh;python /gpfs/data/denizlab/Users/bz1030/model/validation.py> was submitted from host <skynet01> by user <bz1030> in cluster <SkynetCluster> at Sun Apr 28 20:52:32 2019
+Job was executed on host(s) <4*skygpu01>, in queue <normal>, as user <bz1030> in cluster <SkynetCluster> at Sun Apr 28 20:52:39 2019
+</home/bz1030> was used as the home directory.
+</gpfs/data/denizlab/Users/bz1030/model/bash_file> was used as the working directory.
+Started at Sun Apr 28 20:52:39 2019
+Terminated at Mon Apr 29 02:41:14 2019
+Results reported at Mon Apr 29 02:41:14 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#BSUB -n 4
+#BSUB -e /gpfs/data/denizlab/Users/bz1030/model/log/mamm_85000.err
+#BSUB -o /gpfs/data/denizlab/Users/bz1030/model/log/mamm_85000.out
+
+source /gpfs/data/denizlab/Users/bz1030/model/tf.sh
+python /gpfs/data/denizlab/Users/bz1030/model/validation.py
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   80598.00 sec.
+    Max Memory :                                 3 GB
+    Average Memory :                             1.21 GB
+    Total Requested Memory :                     8.00 GB
+    Delta Memory :                               5.00 GB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                15
+    Run time :                                   20906 sec.
+    Turnaround time :                            20922 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file </gpfs/data/denizlab/Users/bz1030/model/log/mamm_85000.err> for stderr output of this job.
+
