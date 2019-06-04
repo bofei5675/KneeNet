@@ -19,16 +19,19 @@ import time
 import scipy.ndimage as ndimage
 from utils import *
 
-def get_KL_grade(file_path='/gpfs/data/denizlab/Datasets/OAI/ClinicalFromNDA/X-Ray Image Assessments_SAS/Semi-Quant Scoring_SAS/kxr_sq_bu00.txt'):
+def get_KL_grade(file_path,month_file):
     '''
     Read KL Grade as a data frame
-    :param file_path:
+    :param file_path: e.g. '/gpfs/data/denizlab/Datasets/OAI/ClinicalFromNDA/X-Ray Image Assessments_SAS/Semi-Quant Scoring_SAS/kxr_sq_bu00.txt'
     :return:
     '''
-    df = pd.read_csv(file_path,sep='|')[['ID','SIDE','V00XRKL','READPRJ']]
+    df = pd.read_csv(file_path,sep='|')
+    df.columns = [col.upper() for col in df.columns] # some files READPRJ is not captilized(???)
+    print('####### Obtaining KL Grade File ###############')
+    df= df[['ID','SIDE','V{}XRKL'.format(month_file),'READPRJ']]
     df = df.loc[df['READPRJ'] == 15] # this is a project code from the experiment
     return df
-def get_KL(df,patientID,side):
+def get_KL(df,patientID,side,month_file):
     '''
     Get KLG from dataframe
     :param df:
@@ -37,7 +40,7 @@ def get_KL(df,patientID,side):
     :return:
     '''
     patientInfo = df.loc[df['ID'] == patientID]
-    kl_grade = patientInfo.loc[patientInfo['SIDE'] == side,'V00XRKL']
+    kl_grade = patientInfo.loc[patientInfo['SIDE'] == side,'V{}XRKL'.format(month_file)]
     if kl_grade.shape[0] == 0:
         kl_grade ='NA'
     return np.squeeze(kl_grade)
@@ -53,11 +56,24 @@ def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_
     '''
     if method not in ['mean','svm','mix']:
         raise ValueError('Please use method of mean, svm, or mix')
-
+    monthToKL = {
+        '00m':'00',
+        '12m': '01',
+        '18m': '02',
+        '24m': '03',
+        '30m': '04',
+        '36m': '05',
+        '48m': '06',
+        '72m': '08',
+        '96m': '10',
+    } # this map is obtained from Cem and README file of dataset.
+    klGradeFilePath = '/gpfs/data/denizlab/Datasets/OAI/ClinicalFromNDA/X-Ray Image Assessments_SAS/Semi-Quant Scoring_SAS/'
+    klGradeFileName = 'kxr_sq_bu{}.txt'.format(monthToKL[month])
+    klGradeFilePath = os.path.join(klGradeFilePath,klGradeFileName)
     content_file_path = os.path.join(content_file_path,month)
     file_name = 'contents.csv'
     count = 0
-    KL_Grade = get_KL_grade()
+    KL_Grade = get_KL_grade(klGradeFilePath,monthToKL[month])
     summary = {
         'File Name':[],
         'Folder':[],
@@ -87,8 +103,8 @@ def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_
                     left_svm, right_svm = image_preprocessing_oulu(data_path,data_file)
                     if left_svm is None:
                         svm_not_found += 1
-                    left,right = extract_knee(img,0), extract_knee(img,1)
-                    left_kl,right_kl = get_KL(KL_Grade,int(patientID),2),get_KL(KL_Grade,int(patientID),1)
+                    left,right = extract_knee(img,0), extract_knee(img,1) # left is 0, and right is 1
+                    left_kl,right_kl = get_KL(KL_Grade,int(patientID),2,monthToKL[month]),get_KL(KL_Grade,int(patientID),1,monthToKL[month])
                     # create hdf5 file
                     if method == 'mean':
                         create_hdf5_file(summary,left,data,patientID,studyDate,barCode,'LEFT',left_kl,
