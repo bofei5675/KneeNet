@@ -41,8 +41,8 @@ if __name__ == '__main__':
     job_number = sys.argv[1]
     HOME_PATH = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/mix/'
     summary_path = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/'
-    log_file_path = '/gpfs/data/denizlab/Users/bz1030/model/model_torch/model_flatten_linear_layer/train_log{}'.format(job_number)
-    model_file_path = '/gpfs/data/denizlab/Users/bz1030/model/model_torch/model_flatten_linear_layer/model_weights{}'.format(job_number)
+    log_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_log{}'.format(job_number)
+    model_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/model_weights{}'.format(job_number)
 
     test = pd.read_csv(summary_path + 'test.csv').sample(n=200).reset_index() # split train - test set.
 

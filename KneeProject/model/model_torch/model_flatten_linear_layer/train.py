@@ -41,17 +41,17 @@ if __name__ == '__main__':
     job_number = int(sys.argv[1]) # get job number
     HOME_PATH = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/mix/'
     summary_path = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/'
-    log_file_path = '/gpfs/data/denizlab/Users/bz1030/model/model_torch/model_flatten_linear_layer/train_log{}'.format(job_number)
-    model_file_path = '/gpfs/data/denizlab/Users/bz1030/model/model_torch/model_flatten_linear_layer/model_weights{}'.format(job_number)
-    output_file_path = '/gpfs/data/denizlab/Users/bz1030/model/model_torch/model_flatten_linear_layer/train_log{}/output{}.txt'\
+    log_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_log{}'.format(job_number)
+    model_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/model_weights{}'.format(job_number)
+    output_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_log{}/output{}.txt'\
         .format(job_number,job_number)
     if not os.path.exists(log_file_path):
         os.makedirs(log_file_path)
     if not os.path.exists(model_file_path):
         os.makedirs(model_file_path)
 
-    train = pd.read_csv(summary_path + 'train.csv').reset_index()
-    val = pd.read_csv(summary_path + 'val.csv').reset_index() # split train - test set.
+    train = pd.read_csv(summary_path + 'train.csv').sample(n=100).reset_index()
+    val = pd.read_csv(summary_path + 'val.csv').sample(n=20).reset_index() # split train - test set.
 
     start_val = 0
     tensor_transform_train = transforms.Compose([
@@ -134,7 +134,7 @@ if __name__ == '__main__':
             val_acc.append(acc)
             val_kappa.append(kappa)
             with open(output_file_path, 'a+') as f:
-                f.write(str(cm))
+                f.write(str(cm) + '\n')
                 f.write('Epoch {}: Val Loss {}; Val Acc {}; Val MSE {}; Val Kappa {};\n'\
                         .format(epoch, val_loss, acc, mse, kappa))
 
