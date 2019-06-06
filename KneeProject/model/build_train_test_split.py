@@ -8,7 +8,7 @@ import random
 random.seed(0)
 def build_summary_file(summary_path):
     summary_files = os.listdir(summary_path)
-    summary_files = [i for i in summary_files if '.csv' in i]
+    summary_files = [i for i in summary_files if '.csv' in i and 'summary_' in i]
     print(summary_files)
     dfs = []
     for each in summary_files:

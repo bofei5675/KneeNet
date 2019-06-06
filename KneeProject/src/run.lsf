@@ -1,8 +1,9 @@
 #!/bin/bash
 #BSUB -n 2
-#BSUB -e /gpfs/data/denizlab/Users/bz1030/src/log/run%J.err
-#BSUB -o /gpfs/data/denizlab/Users/bz1030/src/log/run%J.out
-
+#BSUB -e /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/src/log/run%J.err
+#BSUB -o /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/src/log/run%J.out
+#BSUB -q short
+# 00m 12m 18m 24m 36m 48m 72m 96m
 export month="96m"
-source /gpfs/data/denizlab/Users/bz1030/src/setup.sh
-python /gpfs/data/denizlab/Users/bz1030/src/main.py --month "$month" > log/log"$month".txt
+source /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/src/setup.sh
+python /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/src/main.py --month "$month"

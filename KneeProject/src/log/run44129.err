@@ -1,0 +1,2 @@
+/home/bz1030/.conda/envs/knee_localizer/lib/python3.6/site-packages/scipy/ndimage/interpolation.py:583: UserWarning: From scipy 0.13.0, the output shape of zoom() is calculated with round() instead of int() - for these inputs the size of the returned array has changed.
+  "the returned array has changed.", UserWarning)

@@ -29,7 +29,8 @@ def get_KL_grade(file_path,month_file):
     df.columns = [col.upper() for col in df.columns] # some files READPRJ is not captilized(???)
     print('####### Obtaining KL Grade File ###############')
     df= df[['ID','SIDE','V{}XRKL'.format(month_file),'READPRJ']]
-    df = df.loc[df['READPRJ'] == 15] # this is a project code from the experiment
+    df = df.loc[df.READPRJ.isin([15,37,42])]
+    #df = df.loc[df['READPRJ'] == 15] # this is a project code from the experiment
     return df
 def get_KL(df,patientID,side,month_file):
     '''
@@ -43,6 +44,11 @@ def get_KL(df,patientID,side,month_file):
     kl_grade = patientInfo.loc[patientInfo['SIDE'] == side,'V{}XRKL'.format(month_file)]
     if kl_grade.shape[0] == 0:
         kl_grade ='NA'
+    elif kl_grade.shape[0] > 1:
+        print(kl_grade)
+        kl_grade = kl_grade.iloc[0]
+    print(kl_grade)
+
     return np.squeeze(kl_grade)
 
 def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_original/',month = '00m',method = 'mean',
@@ -61,7 +67,6 @@ def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_
         '12m': '01',
         '18m': '02',
         '24m': '03',
-        '30m': '04',
         '36m': '05',
         '48m': '06',
         '72m': '08',
@@ -174,7 +179,10 @@ def create_hdf5_file(summary,image, data,patientID, studyDate, barCode,descripti
         summary['Bar Code'].append(barCode)
         summary['Description'].append(description)
         summary['Image Size'].append('{}x{}'.format(*pixelDimensions))
-        summary['KLG'].append(kl_grade)
+        try:
+            summary['KLG'].append(int(kl_grade))
+        except (TypeError,ValueError):
+            summary['KLG'].append('NA')
         summary['Method'].append(method)
         summary['IsSuccessful'].append(isSuccessful)
         # create hdf5 file

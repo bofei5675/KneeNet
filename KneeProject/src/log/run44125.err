@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/src/main.py", line 16, in <module>
+    main(month)
+  File "/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/src/main.py", line 12, in main
+    save_dir='/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/')
+  File "/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/src/preprocessing.py", line 81, in read_dicome_and_process
+    KL_Grade = get_KL_grade(klGradeFilePath,monthToKL[month])
+  File "/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/src/preprocessing.py", line 28, in get_KL_grade
+    df = pd.read_csv(file_path,sep='|')
+  File "/home/bz1030/.conda/envs/knee_localizer/lib/python3.6/site-packages/pandas/io/parsers.py", line 702, in parser_f
+    return _read(filepath_or_buffer, kwds)
+  File "/home/bz1030/.conda/envs/knee_localizer/lib/python3.6/site-packages/pandas/io/parsers.py", line 429, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/bz1030/.conda/envs/knee_localizer/lib/python3.6/site-packages/pandas/io/parsers.py", line 895, in __init__
+    self._make_engine(self.engine)
+  File "/home/bz1030/.conda/envs/knee_localizer/lib/python3.6/site-packages/pandas/io/parsers.py", line 1122, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/bz1030/.conda/envs/knee_localizer/lib/python3.6/site-packages/pandas/io/parsers.py", line 1853, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 387, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 705, in pandas._libs.parsers.TextReader._setup_parser_source
+FileNotFoundError: [Errno 2] File b'/gpfs/data/denizlab/Datasets/OAI/ClinicalFromNDA/X-Ray Image Assessments_SAS/Semi-Quant Scoring_SAS/kxr_sq_bu02.txt' does not exist: b'/gpfs/data/denizlab/Datasets/OAI/ClinicalFromNDA/X-Ray Image Assessments_SAS/Semi-Quant Scoring_SAS/kxr_sq_bu02.txt'

@@ -1,0 +1,3 @@
+ERROR: NCCL2 library not found in /usr/local/cuda-9.2/targets/ppc64le-linux/lib.
+Perhaps /opt/DL/nccl2/bin/nccl2-location needs update.
+Re-install NCCL2 and mldl-nccl2-metapkg to correct the problem.
