@@ -1,0 +1,9 @@
+#BSUB -n 4
+#BSUB -e /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_densenet/train%J.err
+#BSUB -o /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_densenet/train%J.out
+#BSUB -gpu "num=1:mode=shared:j_exclusive=yes"
+#BSUB -q "short"
+
+. /gpfs/share/skynet/apps/anaconda3/etc/profile.d/conda.sh
+conda activate powerai1.6_env
+python /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_densenet/train.py --model 1
