@@ -1,0 +1,6 @@
+#!/bin/bash
+#BSUB -n 2
+#BSUB -e /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/project_oulu/run%J.err
+#BSUB -o /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/project_oulu/run%J.out
+#BSUB -q "normal"
+python /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/project_oulu/oulu_preprocessing.py
