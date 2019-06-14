@@ -104,13 +104,11 @@ def process_file(i, read_fname, fname, dataset_dir, save_dir, bbox, gradeL, grad
     """
     leftok = (gradeL >= 0)
     rightok = (gradeR >= 0)
-    print(not leftok,not rightok)
     if (not rightok) and (not leftok):
         print(f"failed on kl grade {fname} {bbox}")
         return True
 
     res_read = read_dicom(os.path.join(dataset_dir, read_fname))
-    print('read data from:',os.path.join(dataset_dir, fname))
     if res_read is None:
         print(f"failed on res_read {fname} {bbox}")
         return True
