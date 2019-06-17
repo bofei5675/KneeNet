@@ -2,8 +2,10 @@
 #BSUB -e /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/evaluate%J.err
 #BSUB -o /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/evaluate%J.out
 #BSUB -gpu "num=1:mode=shared:j_exclusive=yes"
+#BSUB -q short
+
 export PATH=/gpfs/share/skynet/apps/anaconda3/bin:$PATH
 . /gpfs/share/skynet/apps/anaconda3/etc/profile.d/conda.sh
 source activate pytorch-env
 source /opt/DL/pytorch/bin/pytorch-activate
-python /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/evaluate.py 1
+python /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/evaluate.py --model 5

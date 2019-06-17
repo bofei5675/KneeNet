@@ -35,10 +35,15 @@ import pandas as pd
 import time
 import sys
 
+parser = argparse.ArgumentParser(description='Arguments for training model')
+
+parser.add_argument('-model','--model',help='Number indicates different training models')
 if __name__ == '__main__':
+    args = parser.parse_args()
     USE_CUDA = torch.cuda.is_available()
     device = torch.device("cuda" if USE_CUDA else "cpu")
-    job_number = int(sys.argv[1]) # get job number
+    EPOCH = 50
+    job_number = int(args.model) # get job number
     HOME_PATH = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/mix/'
     summary_path = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/'
     log_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_log{}'.format(job_number)
@@ -50,8 +55,8 @@ if __name__ == '__main__':
     if not os.path.exists(model_file_path):
         os.makedirs(model_file_path)
 
-    train = pd.read_csv(summary_path + 'train.csv').sample(n=100).reset_index()
-    val = pd.read_csv(summary_path + 'val.csv').sample(n=20).reset_index() # split train - test set.
+    train = pd.read_csv(summary_path + 'train.csv').reset_index()
+    val = pd.read_csv(summary_path + 'val.csv').reset_index() # split train - test set.
 
     start_val = 0
     tensor_transform_train = transforms.Compose([
@@ -67,23 +72,32 @@ if __name__ == '__main__':
     dataset_train = KneeGradingDataset(train,HOME_PATH,tensor_transform_train,stage = 'train')
     dataset_val = KneeGradingDataset(val,HOME_PATH,tensor_transform_val,stage = 'val')
 
-    train_loader = data.DataLoader(dataset_train,batch_size=4)
+    train_loader = data.DataLoader(dataset_train,batch_size=20)
     val_loader = data.DataLoader(dataset_val,batch_size=8)
     print('Training data: ', len(dataset_train))
     print('Validation data:', len(dataset_val))
+    net = resnet34(pretrained=True)
+    print(net)
+
     if job_number == 1: # our vanilla way
         net = resnet34(pretrained=True)
         net.avgpool = nn.AvgPool2d(28,28)
-        net.fc = nn.Linear(512,5)
+        net.fc = nn.Sequential(nn.Dropout(0.2),nn.Linear(512, 5)) # OULU's paper.
         net = net.to(device)
-        optimizer = optim.Adam(net.parameters(), lr=0.001,weight_decay=1e-4)
+        optimizer = optim.Adam(net.parameters(), lr=0.0001)
     elif job_number == 2:
         net = resnet34(pretrained=True)
         net.avgpool = nn.AvgPool2d(28, 28)
-        net.fc = nn.Sequential(nn.Dropout(0.2), nn.Linear(512, 5)) # OULU's paper.
+        net.fc = nn.Sequential(nn.Linear(512, 5)) # OULU's paper.
         net = net.to(device)
-        optimizer = optim.Adam(net.parameters(),lr=0.001,weight_decay=1e-4)
+        optimizer = optim.Adam(net.parameters(),lr=0.0001)
     elif job_number == 3:
+        net = resnet34(pretrained=True)
+        net.avgpool = nn.AvgPool2d(28, 28)
+        net.fc = nn.Sequential(nn.Dropout(0.2), nn.Linear(512, 5))  # OULU's paper.
+        net = net.to(device)
+        optimizer = optim.Adam(net.parameters(), lr=0.0001,weight_decay=1e-4)
+    elif job_number == 4:
         net = resnet34(pretrained=True)
         for param in net.parameters():
             param.requires_grad = False
@@ -95,7 +109,15 @@ if __name__ == '__main__':
             if param.requires_grad:
                 params_to_update.append(param)
         net = net.to(device)
-        optimizer = optim.Adam(params_to_update)
+        optimizer = optim.Adam(params_to_update,lr=0.0001)
+    elif job_number == 6:
+        # train from scratch
+        net = resnet34(pretrained=False)
+        net.avgpool = nn.AvgPool2d(28, 28)
+        net.fc = nn.Sequential(nn.Dropout(0.2), nn.Linear(512, 5))  # OULU's paper.
+        net = net.to(device)
+        optimizer = optim.Adam(net.parameters(), lr=0.0001, weight_decay=1e-4)
+
     # Network
 
     print('############### Model Finished ####################')
@@ -113,11 +135,11 @@ if __name__ == '__main__':
     train_started = time.time()
     with open(output_file_path, 'a+') as f:
         f.write('######## Train Start #######\n')
-    for epoch in range(20):
-        train_loss = train_epoch(epoch,net,optimizer,train_loader,criterion,1000,use_cuda = USE_CUDA,output_file_path = output_file_path)
+    for epoch in range(EPOCH):
+        train_loss = train_epoch(epoch,net,optimizer,train_loader,criterion,EPOCH,use_cuda = USE_CUDA,output_file_path = output_file_path)
 
         with open(output_file_path,'a+') as f:
-            f.write('Epoch {}: Train Loss {}\n'.format(epoch,train_loss))
+            f.write('Epoch {}: Train Loss {}\n'.format(epoch + 1,train_loss))
         if epoch >= start_val:
             start = time.time()
             val_loss, probs, truth, _ = validate_epoch(net, val_loader, criterion)
@@ -136,7 +158,7 @@ if __name__ == '__main__':
             with open(output_file_path, 'a+') as f:
                 f.write(str(cm) + '\n')
                 f.write('Epoch {}: Val Loss {}; Val Acc {}; Val MSE {}; Val Kappa {};\n'\
-                        .format(epoch, val_loss, acc, mse, kappa))
+                        .format(epoch + 1, val_loss, acc, mse, kappa))
 
         # Making logs backup
         np.save(os.path.join(log_file_path,'logs.npy'),
@@ -156,7 +178,6 @@ if __name__ == '__main__':
                     print('Saved snapshot:', cur_snapshot_name)
                     torch.save(net.state_dict(), cur_snapshot_name)
                     prev_model = cur_snapshot_name
-
         gc.collect()
     print('Training took:', time.time() - train_started, 'seconds')
 

@@ -1,0 +1,10 @@
+#BSUB -n 4
+#BSUB -e /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train%J.err
+#BSUB -o /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train%J.out
+#BSUB -gpu "num=1:mode=shared:j_exclusive=yes"
+#BSUB -q "normal"
+
+## pytorch environment
+. /gpfs/share/skynet/apps/anaconda3/etc/profile.d/conda.sh
+conda activate powerai1.6_env
+python /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train2.py --model 1 --beta 1.0
