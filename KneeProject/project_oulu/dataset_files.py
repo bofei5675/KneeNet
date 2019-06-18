@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import time
 
-subfolder = 'val'
+subfolder = 'test'
 save_dir = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed_oulu/'
 
 save_dir = save_dir + subfolder

@@ -41,9 +41,9 @@ if __name__ =='__main__':
     USE_CUDA = torch.cuda.is_available()
     device = torch.device("cuda" if USE_CUDA else "cpu")
     train_dir = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/project_oulu/train.csv'
-    val_dir = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/project_oulu/val.csv'
+    val_dir = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/project_oulu/test.csv'
     dataset = pd.read_csv(train_dir).sample(n = 20).reset_index()
-    dataset_val = pd.read_csv(val_dir).sample(n = 20).reset_index()
+    dataset_val = pd.read_csv(val_dir)#.sample(n = 20).reset_index()
     # Defining the transforms
     # This is the transformation for each patch
     saved = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/project_oulu/resnet_codes/saved'
@@ -117,6 +117,10 @@ if __name__ =='__main__':
     net.fc = nn.Sequential(nn.Dropout(0.2), nn.Linear(512, 5))
 
     # Network
+    if USE_CUDA:
+        net.load_state_dict(torch.load(os.path.join(saved,'epoch_3.pth')))
+    else:
+        net.load_state_dict(torch.load(os.path.join(saved, 'epoch_3.pth'),map_location='cpu'))
     net = net.to(device)
     # Optimizer
     optimizer = optim.Adam(net.parameters(), lr=0.0001,
@@ -142,65 +146,28 @@ if __name__ =='__main__':
     n_epochs = 3
     max_ep = n_epochs
     start_val = 0
-    for epoch in range(n_epochs):
-        train_ds = KneeGradingDataset(dataset,
-                                     transform=augment_transforms)
-        train_loader = data.DataLoader(train_ds,
-                                       batch_size=batch_size,
-                                       shuffle=True
-                                       )
+    start = time.time()
+    val_loss, probs, truth, _ = validate_epoch(net, val_loader, criterion,USE_CUDA)
 
-        start = time.time()
-        train_loss = train_epoch(epoch, net, optimizer, train_loader, criterion, n_epochs, USE_CUDA)
-        epoch_time = np.round(time.time() - start, 4)
-        print(colored('==> ', 'green') + 'Epoch training time: {} s.'.format(epoch_time))
-        if epoch >= start_val:
-            start = time.time()
-            val_loss, probs, truth, _ = validate_epoch(net, val_loader, criterion,USE_CUDA)
-
-            preds = probs.argmax(1)
-            # Validation metrics
-            cm = confusion_matrix(truth, preds)
-            kappa = np.round(cohen_kappa_score(truth, preds, weights="quadratic"),4)
-            acc = np.round(np.mean(cm.diagonal().astype(float)/cm.sum(axis=1)),4)
-            mse = np.round(mean_squared_error(truth, preds), 4)
-            val_time = np.round(time.time() - start, 4)
-            log_info = '[%d | %d, Val loss: %.3f | Acc %.3f Kappa %.3f' % (epoch + 1, max_ep,val_loss,acc,kappa)
-            print(log_info)
-            with open('log.txt', 'a+') as f:
-                f.write(log_info + '\n')
-            #Displaying the results
-            print(colored('==> ', 'green')+'Kappa:', kappa)
-            print(colored('==> ', 'green')+'Avg. class accuracy', acc)
-            print(colored('==> ', 'green')+'MSE', mse)
-            print(colored('==> ', 'green')+'Val loss:', val_loss)
-            print(colored('==> ', 'green')+'Epoch val time: {} s.'.format(val_time))
-            # Storing the logs
-            train_losses.append(train_loss)
-            val_losses.append(val_loss)
-            val_mse.append(mse)
-            val_acc.append(acc)
-            val_kappa.append(kappa)
-        np.save(os.path.join(saved, 'logs.npy'),
-                [train_losses, val_losses, val_mse, val_acc, val_kappa])
-
-        if epoch >= start_val:
-            # We will be saving only the snapshot which has lowest loss value on the validation set
-            cur_snapshot_name = os.path.join(saved, 'epoch_{}.pth'.format(epoch + 1))
-            if prev_model is None:
-                torch.save(net.state_dict(), cur_snapshot_name)
-                prev_model = cur_snapshot_name
-                best_kappa = kappa
-            else:
-                if kappa > best_kappa:
-                    os.remove(prev_model)
-                    best_kappa = kappa
-                    torch.save(net.state_dict(), cur_snapshot_name)
-                    prev_model = cur_snapshot_name
-
-        gc.collect()
-
-    print('Training took:', time.time() - train_started, 'seconds')
+    preds = probs.argmax(1)
+    # Validation metrics
+    cm = confusion_matrix(truth, preds)
+    kappa = np.round(cohen_kappa_score(truth, preds, weights="quadratic"),4)
+    acc = np.round(np.mean(cm.diagonal().astype(float)/cm.sum(axis=1)),4)
+    mse = np.round(mean_squared_error(truth, preds), 4)
+    val_time = np.round(time.time() - start, 4)
+    log_info = '[Test loss: %.3f | Acc %.3f Kappa %.3f' % (val_loss,acc,kappa)
+    print(log_info)
+    with open('log.txt', 'a+') as f:
+        f.write(log_info + '\n')
+    #Displaying the results
+    print(colored('==> ', 'green')+'Kappa:', kappa)
+    print(colored('==> ', 'green')+'Avg. class accuracy', acc)
+    print(colored('==> ', 'green')+'MSE', mse)
+    print(colored('==> ', 'green')+'Val loss:', val_loss)
+    print(colored('==> ', 'green')+'Epoch val time: {} s.'.format(val_time))
+    # Storing the logs
+    print('Test took:', time.time() - train_started, 'seconds')
 
 
 

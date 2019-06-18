@@ -1,5 +1,3 @@
 ## pytorch environment
-export PATH=/gpfs/share/skynet/apps/anaconda3/bin:$PATH
 . /gpfs/share/skynet/apps/anaconda3/etc/profile.d/conda.sh
-source activate pytorch-env
-source /opt/DL/pytorch/bin/pytorch-activate
+conda activate powerai1.6_env

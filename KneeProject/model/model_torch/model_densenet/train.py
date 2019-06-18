@@ -74,8 +74,8 @@ if __name__ == '__main__':
     dataset_train = KneeGradingDataset(train,HOME_PATH,tensor_transform_train,stage = 'train')
     dataset_val = KneeGradingDataset(val,HOME_PATH,tensor_transform_val,stage = 'val')
 
-    train_loader = data.DataLoader(dataset_train,batch_size=16)
-    val_loader = data.DataLoader(dataset_val,batch_size=8)
+    train_loader = data.DataLoader(dataset_train,batch_size=96)
+    val_loader = data.DataLoader(dataset_val,batch_size=32)
     print('Training data: ', len(dataset_train))
     print('Validation data:', len(dataset_val))
     # Network

@@ -25,6 +25,8 @@ def train_epoch(epoch, net, optimizer, train_loader, criterion, max_ep,use_cuda 
     running_loss = 0.0
     n_batches = len(train_loader)
     sm = nn.Softmax(dim=1)
+    batch_correct = 0
+    num_samples = 0
     for i, (batch, targets, names) in enumerate(train_loader):
         optimizer.zero_grad()
 
@@ -36,20 +38,23 @@ def train_epoch(epoch, net, optimizer, train_loader, criterion, max_ep,use_cuda 
             labels = Variable(targets.long())
             inputs = Variable(batch)
         outputs = net(inputs)
-        with open(output_file_path,'a+') as f:
-            f.write(str(outputs.data.cpu().numpy()))
+        probs = sm(outputs).data.cpu().numpy()
+        preds = probs.argmax(1)
+        truth = targets.data.cpu().numpy()
+        batch_correct += (preds == truth).sum()
+        num_samples += probs.shape[0]
         loss = criterion(outputs, labels)
         loss.backward()
         optimizer.step()
         running_loss += loss.item()
-        output = '[%d | %d, %5d / %d] | Running loss: %.3f / loss %.3f' % (epoch + 1, max_ep, i + 1,
+        output = '[%d | %d, %5d / %d] | Running loss: %.3f / loss %.3f | Acc: %.4f' % (epoch + 1, max_ep, i + 1,
                                                                         n_batches, running_loss / (i + 1),
-                                                                        loss.item())
+                                                                        loss.item(), batch_correct / num_samples)
         print(output)
         with open(output_file_path,'a+') as f:
             f.write(output + '\n')
         gc.collect()
     gc.collect()
 
-    return running_loss / n_batches
+    return running_loss / n_batches, batch_correct / num_samples
 

@@ -16,7 +16,6 @@ import matplotlib.pyplot as plt
 from scipy.interpolate import griddata
 import random as rand
 import time
-import scipy.ndimage as ndimage
 from utils import *
 
 def get_KL_grade(file_path,month_file):
@@ -45,10 +44,7 @@ def get_KL(df,patientID,side,month_file):
     if kl_grade.shape[0] == 0:
         kl_grade ='NA'
     elif kl_grade.shape[0] > 1:
-        print(kl_grade)
         kl_grade = kl_grade.iloc[0]
-    print(kl_grade)
-
     return np.squeeze(kl_grade)
 
 def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_original/',month = '00m',method = 'mean',
@@ -65,7 +61,6 @@ def read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_
     monthToKL = {
         '00m':'00',
         '12m': '01',
-        '18m': '02',
         '24m': '03',
         '36m': '05',
         '48m': '06',
@@ -166,7 +161,6 @@ def create_hdf5_file(summary,image, data,patientID, studyDate, barCode,descripti
     save_dir = os.path.join(save_dir,method,str(month))
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
-    print('Save to {}'.format(save_dir))
     file_name = str(patientID) +'_'+ month + '_'+ description +'_' + 'KNEE.hdf5'
     pixelDimensions = image.shape
     pixelSpacing = '%.3fx%.3f' % (float(data.PixelSpacing[0]),float(data.PixelSpacing[1]))

@@ -18,7 +18,7 @@ def validate_epoch(net, val_loader, criterion,use_cuda = False):
     net.train(False)
 
     running_loss = 0.0
-    sm = nn.Softmax()
+    sm = nn.Softmax(dim = 1)
 
     truth = []
     preds = []

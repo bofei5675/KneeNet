@@ -48,9 +48,12 @@ def train_epoch(epoch, net, optimizer, train_loader, criterion, max_ep,use_cuda 
         optimizer.step()
 
         running_loss += loss.item()
-        print('[%d | %d, %5d / %d] | Running loss: %.3f / loss %.3f' % (epoch + 1, max_ep, i + 1,
+        log_info = '[%d | %d, %5d / %d] | Running loss: %.3f / loss %.3f' % (epoch + 1, max_ep, i + 1,
                                                                         n_batches, running_loss / (i + 1),
-                                                                        loss.item()))
+                                                                        loss.item())
+        print(log_info)
+        with open('log.txt','a+') as f:
+            f.write(log_info + '\n')
         gc.collect()
     gc.collect()
 

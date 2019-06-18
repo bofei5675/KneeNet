@@ -26,14 +26,15 @@ class KneeGradingDataset(data.Dataset):
         fname = row['File Name']
         month = fname.split('_')[1]
         target = int(row['KLG'])
-
-        f = h5py.File(os.path.join(self.home_path,month,fname))
-        img = f['data']
-
+        path = os.path.join(self.home_path,month,fname)
+        f = h5py.File(path)
+        img = f['data'].value
+        f.close()
         img = np.expand_dims(img,axis=2)
         img = np.repeat(img[:, :], 3, axis=2)
         if self.transform:
             img = self.transform(img)
+
         return img, target, fname
 
     def __len__(self):

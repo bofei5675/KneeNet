@@ -17,6 +17,7 @@ from oulukneeloc import SVM_MODEL_PATH
 from oulukneeloc.proposals import (read_dicom, get_joint_y_proposals,
                                    preprocess_xray)
 from detector import KneeLocalizer,worker
+
 def image_preprocessing(file_path = '../data/9000296'):
     '''
 
@@ -29,10 +30,14 @@ def image_preprocessing(file_path = '../data/9000296'):
     #print('######### PHOTO INTER {} #########'.format(photoInterpretation))
     if photoInterpretation not in ['MONOCHROME2','MONOCHROME1']:
         raise ValueError('Wrong Value of Photo Interpretation: {}'.format(photoInterpretation))
-    img = interpolate_resolution(data) # get fixed resolution
+    img = interpolate_resolution(data).astype(np.float64) # get fixed resolution
     img_before = img.copy()
     if photoInterpretation == 'MONOCHROME1':
         img = invert_Monochrome1(img)
+    # apply normalization, move into hist_truncation.
+    # img = global_contrast_normalization(img)
+    # apply hist truncation
+    img = hist_truncation(img)
     rows, cols = img.shape
     # get center part of image if image is large enough
     if rows >= 2048 and cols >= 2048:
@@ -40,10 +45,7 @@ def image_preprocessing(file_path = '../data/9000296'):
     else:
         img,_,_ = padding(img)
         img = get_center_image(img) # after padding get the center of image
-    # apply normalization
-    img = global_contrast_normalization(img)
-    # apply hist truncation
-    img = hist_truncation(img)
+
 
     return img,data,img_before
 def invert_Monochrome1(image_array):
@@ -54,7 +56,11 @@ def invert_Monochrome1(image_array):
     :param image_array:
     :return:
     '''
-    image_array = -image_array + 255.0
+    print('Invert Monochrome ')
+    print(image_array.shape, np.mean(image_array), np.min(image_array), np.max(image_array))
+    # image_array = -image_array + 255.0 # our method
+    image_array = image_array.max() - image_array
+    print(image_array.shape, np.mean(image_array), np.min(image_array), np.max(image_array))
     return image_array
 
 def interpolate_resolution(image_dicom, scaling_factor=0.2):
@@ -64,12 +70,14 @@ def interpolate_resolution(image_dicom, scaling_factor=0.2):
     :param scaling_factor:
     :return:
     '''
+    print('Obtain Fix Resolution:')
     image_array = image_dicom.pixel_array
-
+    print(image_array.shape,np.mean(image_array),np.min(image_array),np.max(image_array))
     x = image_dicom[0x28, 0x30].value[0]
     y = image_dicom[0x28, 0x30].value[1]
 
     image_array = ndimage.zoom(image_array, [x / scaling_factor, y / scaling_factor])
+    print(image_array.shape,np.mean(image_array),np.min(image_array),np.max(image_array))
     return image_array
 def get_center_image(img,img_size = (2048,2048)):
     '''
@@ -105,10 +113,22 @@ def padding(img,img_size = (2048,2048)):
         before_y,after_y = 0,0
     return np.pad(img,((before_x,after_x),(before_y,after_y)),'constant'),before_x,before_y
 
-
+def global_contrast_normalization_oulu(img,lim1,multiplier = 255):
+    '''
+    This part is taken from oulu's lab. This how they did global contrast normalization.
+    :param img:
+    :param lim1:
+    :param multiplier:
+    :return:
+    '''
+    img -= lim1
+    img /= img.max()
+    img *= multiplier
+    return img
 def global_contrast_normalization(img, s=1, lambda_=10, epsilon=1e-8):
     '''
     Apply global contrast normalization based on image array.
+    Deprecated since it is not working ...
     :param img:
     :param s:
     :param lambda_:
@@ -116,6 +136,8 @@ def global_contrast_normalization(img, s=1, lambda_=10, epsilon=1e-8):
     :return:
     '''
     # replacement for the loop
+    print('Global contrast normalization:')
+    print(img.shape, np.mean(img), np.min(img), np.max(img))
     X_average = np.mean(img)
     #print('Mean: ', X_average)
     img_center = img - X_average
@@ -124,10 +146,10 @@ def global_contrast_normalization(img, s=1, lambda_=10, epsilon=1e-8):
     contrast = np.sqrt(lambda_ + np.mean(img_center ** 2))
 
     img = s * img_center / max(contrast, epsilon)
-
+    print(img.shape, np.mean(img), np.min(img), np.max(img))
     # scipy can handle it
     return img
-def hist_truncation(img,cut_min=5,cut_max = 95):
+def hist_truncation(img,cut_min=5,cut_max = 99):
     '''
     Apply 5th and 99th truncation on the figure.
     :param img:
@@ -135,10 +157,15 @@ def hist_truncation(img,cut_min=5,cut_max = 95):
     :param cut_max:
     :return:
     '''
+    print('Trim histogram')
+    print(img.shape, np.mean(img), np.min(img), np.max(img))
     lim1,lim2 = np.percentile(img,[cut_min, cut_max])
     img_ = img.copy()
     img_[img < lim1] = lim1
     img_[img > lim2] = lim2
+    print(img_.shape, np.mean(img_), np.min(img_), np.max(img_))
+    img_ = global_contrast_normalization_oulu(img_,lim1,multiplier=255)
+    print(img_.shape, np.mean(img_), np.min(img_), np.max(img_))
     return img_
 
 
@@ -220,6 +247,26 @@ def extract_knee(image_array, side, offset = None):
 Code below is from OULU lab. It includes how they did the preprocessing and extract knee from 
 images
 '''
+def process_file(data,pad):
+    raw_img = data.pixel_array
+    r_, c_ = raw_img.shape
+    img = interpolate_resolution(data).astype(np.float64)
+    photoInterpretation = data[0x28, 0x04].value  # return a string of photometric interpretation
+    # print('######### PHOTO INTER {} #########'.format(photoInterpretation))
+    if photoInterpretation not in ['MONOCHROME2', 'MONOCHROME1']:
+        raise ValueError('Wrong Value of Photo Interpretation: {}'.format(photoInterpretation))
+    elif photoInterpretation == 'MONOCHROME1':
+        img = invert_Monochrome1(img)
+    r, c = img.shape
+    ratio_r = r / r_
+    ratio_c = c / c_
+    img = hist_truncation(img)
+    #img = global_contrast_normalization(img)
+    # define spacing, sizemm, pad
+    tmp = np.zeros((img.shape[0] + 2 * pad, img.shape[1] + 2 * pad))
+    tmp[pad:pad + img.shape[0], pad:pad + img.shape[1]] = img
+    return tmp,ratio_c,ratio_r
+
 def image_preprocessing_oulu(data_folder,file):
     localizer = KneeLocalizer()
 
@@ -246,23 +293,8 @@ def read_file_oulu(file_path,bbox,sizemm=140,pad=300):
         return None,None
     # process_xray
     # get data from Dicom file
-    raw_img = data.pixel_array
-    r_,c_ = raw_img.shape
-    img = interpolate_resolution(data).copy()
-    photoInterpretation = data[0x28, 0x04].value  # return a string of photometric interpretation
-    #print('######### PHOTO INTER {} #########'.format(photoInterpretation))
-    if photoInterpretation not in ['MONOCHROME2', 'MONOCHROME1']:
-        raise ValueError('Wrong Value of Photo Interpretation: {}'.format(photoInterpretation))
-    elif photoInterpretation == 'MONOCHROME1':
-        img = invert_Monochrome1(img)
-    r,c = img.shape
-    ratio_r = r / r_
-    ratio_c = c / c_
-    img = global_contrast_normalization(img)
-    img = hist_truncation(img)
-    # define spacing, sizemm, pad
-    tmp = np.zeros((img.shape[0] + 2 * pad, img.shape[1] + 2 * pad))
-    tmp[pad:pad + img.shape[0], pad:pad + img.shape[1]] = img
+    tmp,ratio_c,ratio_r = process_file(data,pad)
+
     I = tmp
     # left knee coordinates
     x1, y1, x2, y2 = bbox[:4]  # apply padding to the frame of knee

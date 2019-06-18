@@ -3,7 +3,7 @@ from PIL import Image, ImageEnhance
 import torchvision.transforms as transforms
 import numbers
 import numpy as np
-
+import scipy.ndimage as ndimage
 
 class CenterCrop(object):
     """
@@ -41,6 +41,31 @@ class RandomCrop(object):
         x = np.random.randint(0, width - dx + 1)
         y = np.random.randint(0, height - dy + 1)
         return img[y:(y+dy), x:(x+dx)]
+
+class Resize(object):
+    """Crop randomly the image in a sample.
+
+    Args:
+        output_size (tuple or int): Desired output size. If int, square crop
+            is made.
+    """
+    def __init__(self, output_size):
+        assert isinstance(output_size, (int, tuple))
+        if isinstance(output_size, int):
+            self.output_size = (output_size, output_size)
+        else:
+            assert len(output_size) == 2
+            self.output_size = output_size
+
+    def __call__(self, sample):
+        image = sample
+
+        h, w = image.shape[:2]
+        new_h, new_w = self.output_size
+
+        image_array_rescaled = ndimage.zoom(image, [new_h/h, new_w/w, 1])
+
+        return image_array_rescaled
 '''
 def random_crop(img, random_crop_size):
     # Note: image_data_format is 'channel_last'
