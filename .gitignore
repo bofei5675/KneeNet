@@ -5,3 +5,7 @@ data/
 test/
 .DS_Store
 *.txt
+*.pth
+*.lsf
+*.sh
+

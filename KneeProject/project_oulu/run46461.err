@@ -1,0 +1,22 @@
+/gpfs/share/skynet/apps/anaconda3/envs/powerai1.6_env/lib/python3.6/site-packages/pydicom/filereader.py:292: UserWarning: Incorrect value for Specific Character Set 'ISO_2022_IR_6' - assuming 'ISO 2022 IR 6'
+  encoding = convert_encodings(encoding)
+/gpfs/share/skynet/apps/anaconda3/envs/powerai1.6_env/lib/python3.6/site-packages/pydicom/filereader.py:413: UserWarning: Incorrect value for Specific Character Set 'ISO_2022_IR_6' - assuming 'ISO 2022 IR 6'
+  encoding = convert_encodings(char_set)
+/gpfs/share/skynet/apps/anaconda3/envs/powerai1.6_env/lib/python3.6/site-packages/pydicom/dataset.py:568: UserWarning: Incorrect value for Specific Character Set 'ISO_2022_IR_6' - assuming 'ISO 2022 IR 6'
+  char_set = convert_encodings(char_set)
+Traceback (most recent call last):
+  File "/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/project_oulu/oulu_preprocessing.py", line 44, in <module>
+    subject = subject_info.ID.tolist()[0]
+  File "/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/project_oulu/oulu_preprocessing.py", line 10, in image_preprocessing_oulu
+    bbox = worker(file, data_folder, localizer)  # output a string
+  File "/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/project_oulu/detector.py", line 148, in worker
+    img = preprocess_xray(img)
+  File "/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/project_oulu/oulukneeloc/proposals.py", line 38, in preprocess_xray
+    lim1, lim2 = np.percentile(img, [cut_min, cut_max])
+  File "/gpfs/share/skynet/apps/anaconda3/envs/powerai1.6_env/lib/python3.6/site-packages/numpy/lib/function_base.py", line 4291, in percentile
+    interpolation=interpolation)
+  File "/gpfs/share/skynet/apps/anaconda3/envs/powerai1.6_env/lib/python3.6/site-packages/numpy/lib/function_base.py", line 4033, in _ureduce
+    r = func(a, **kwargs)
+  File "/gpfs/share/skynet/apps/anaconda3/envs/powerai1.6_env/lib/python3.6/site-packages/numpy/lib/function_base.py", line 4328, in _percentile
+    ap = a.flatten()
+KeyboardInterrupt

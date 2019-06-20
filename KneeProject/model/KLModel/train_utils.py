@@ -58,3 +58,17 @@ def train_epoch(epoch, net, optimizer, train_loader, criterion, max_ep,use_cuda 
 
     return running_loss / n_batches, batch_correct / num_samples
 
+def load_my_state_dict(model, state_dict):
+    own_state = model.state_dict()
+    print('Total Module to load {}'.format(len(own_state.keys())))
+    print('Total Module from weights file {}'.format(len(state_dict.keys())))
+    count = 0
+    for name, param in state_dict.items():
+        if name not in own_state:
+            continue
+        count +=1
+        if isinstance(param, torch.nn.Parameter):
+            # backwards compatibility for serialized parameters
+            param = param.data
+        own_state[name].copy_(param)
+    print('Load Successful {} / {}'.format(count, len(own_state.keys())))
