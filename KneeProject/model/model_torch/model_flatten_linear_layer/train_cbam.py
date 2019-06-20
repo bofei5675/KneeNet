@@ -81,7 +81,7 @@ if __name__ == '__main__':
     train_loader = data.DataLoader(dataset_train, batch_size=8)
     val_loader = data.DataLoader(dataset_val, batch_size=8)
     # training parameters
-    EPOCH = 2
+
     start_val = 0
     train_losses = []
     val_losses = []
@@ -96,10 +96,12 @@ if __name__ == '__main__':
     if USE_CUDA:
         model.cuda()
         criterion.cuda()
-    load_file = None
+    load_file = os.path.join(model_file_path,'epoch_2.pth')
+    start_epoch = 2
+    EPOCH = start_epoch + 4
     if load_file:
         model.load_state_dict(torch.load(load_file))
-    for epoch in range(EPOCH):
+    for epoch in range(start_epoch,EPOCH):
         #adjust_learning_rate(optimizer,epoch,lr)
 
         train_loss = train_epoch(epoch, model, optimizer, train_loader, criterion, EPOCH, use_cuda=USE_CUDA,

@@ -66,6 +66,7 @@ if __name__ == '__main__':
     model = ResidualNet('ImageNet', 34, 1000, 'CBAM')
     model.fc = nn.Sequential(nn.Dropout(0.2), nn.Linear(512, 5))
     if USE_CUDA:
+        model.cuda()
         state_dict = torch.load(os.path.join(model_file_path,'epoch_2.pth'))
     else:
         state_dict = torch.load(os.path.join(model_file_path, 'epoch_2.pth'),map_location='cpu')
@@ -75,10 +76,6 @@ if __name__ == '__main__':
     load_weights = set(load_weights)
     output = [len(own_model),len(load_weights),len(own_model.intersection(load_weights)),len(own_model.difference(load_weights))]
     print('Own model layers {}; Load weights layers {}; Intersections {}; Difference {};'.format(*output))
-    print(model.state_dict().keys())
-    print()
-    print(state_dict.keys())
-    time.sleep(100)
     criterion = nn.CrossEntropyLoss()
     print("model")
     print(model)
