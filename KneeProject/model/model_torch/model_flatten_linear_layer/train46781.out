@@ -1,0 +1,53 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@skygpu13>
+Subject: Job 46781: <#BSUB -n 4;#BSUB -e /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train%J.err;#BSUB -o /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train%J.out;#BSUB -gpu "num=1:mode=shared:j_exclusive=yes";#BSUB -q "short"; ## pytorch environment;. /gpfs/share/skynet/apps/anaconda3/etc/profile.d/conda.sh;conda activate powerai1.6_env;python /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_cbam.py> in cluster <SkynetCluster> Exited
+
+Job <#BSUB -n 4;#BSUB -e /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train%J.err;#BSUB -o /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train%J.out;#BSUB -gpu "num=1:mode=shared:j_exclusive=yes";#BSUB -q "short"; ## pytorch environment;. /gpfs/share/skynet/apps/anaconda3/etc/profile.d/conda.sh;conda activate powerai1.6_env;python /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_cbam.py> was submitted from host <skynet01> by user <bz1030> in cluster <SkynetCluster> at Wed Jun 19 21:42:11 2019
+Job was executed on host(s) <4*skygpu13>, in queue <short>, as user <bz1030> in cluster <SkynetCluster> at Wed Jun 19 21:42:11 2019
+</home/bz1030> was used as the home directory.
+</gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer> was used as the working directory.
+Started at Wed Jun 19 21:42:11 2019
+Terminated at Wed Jun 19 21:42:35 2019
+Results reported at Wed Jun 19 21:42:35 2019
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#BSUB -n 4
+#BSUB -e /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train%J.err
+#BSUB -o /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train%J.out
+#BSUB -gpu "num=1:mode=shared:j_exclusive=yes"
+#BSUB -q "short"
+
+## pytorch environment
+. /gpfs/share/skynet/apps/anaconda3/etc/profile.d/conda.sh
+conda activate powerai1.6_env
+python /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_cbam.py
+
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   4.71 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     8.00 GB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                6
+    Run time :                                   23 sec.
+    Turnaround time :                            24 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file </gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train46781.err> for stderr output of this job.
+

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_cbam.py", line 41, in <module>
+    load_my_state_dict(model,net.state_dict())
+NameError: name 'load_my_state_dict' is not defined
