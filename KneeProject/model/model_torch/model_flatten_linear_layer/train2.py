@@ -7,15 +7,15 @@ import sys
 sys.path.append('../../KLModel')
 from dataloader import *
 from augmentation import *
-
+from train_utils import *
+from val_utils import *
 from dataloader import KneeGradingDataset
 from tqdm import tqdm
 import numpy as np
 import argparse
 import os
 
-from train_utils import *
-from val_utils import *
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -48,9 +48,9 @@ if __name__ == '__main__':
     beta = float(args.beta)
     HOME_PATH = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/mix/'
     summary_path = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/'
-    log_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_log{}'.format(job_number)
-    model_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/model_weights{}'.format(job_number)
-    output_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_log{}/output{}.txt'\
+    log_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_Hloss_log{}'.format(job_number)
+    model_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/model_Hloss_weights{}'.format(job_number)
+    output_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_Hloss_log{}/output{}.txt'\
         .format(job_number,job_number)
     if not os.path.exists(log_file_path):
         os.makedirs(log_file_path)
