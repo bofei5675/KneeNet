@@ -7,7 +7,6 @@ import sys
 sys.path.append('../../KLModel')
 from dataloader import *
 from augmentation import *
-
 from dataloader import KneeGradingDataset
 from tqdm import tqdm
 import numpy as np
@@ -37,13 +36,41 @@ import sys
 
 parser = argparse.ArgumentParser(description='Arguments for training model')
 
-parser.add_argument('-model','--model',help='Number indicates different training models')
+parser.add_argument('-model','--model',type=int,help='Number indicates different training models')
+parser.add_argument('-pool','--pool',type=str,help='Pool method')
+
+class Identity(nn.Module):
+    def __init__(self):
+        super(Identity,self).__init__()
+
+    def forward(self, inp):
+        return inp
+class DenseNet(nn.Module):
+    def __init__(self,depth = 121, pretrain = True, pool = 'max'):
+        super(DenseNet, self).__init__()
+        if depth == 121:
+            self.dn = densenet121(pretrained=pretrain)
+        self.dn.classifier = Identity()
+        if pool == 'max':
+            self.pool = nn.AdaptiveMaxPool1d(1024)
+        elif pool == 'avg':
+            self.pool = nn.AdaptiveAvgPool1d(1024)
+        self.fc = nn.Sequential(nn.Dropout(0.2),nn.Linear(1024,5))
+    def forward(self, inp):
+        output = self.dn(inp)
+        output = output.unsqueeze(0)
+        output = self.maxpool(output)
+        output = output.squeeze(0)
+        output = self.fc(output)
+        return output
+
 if __name__ == '__main__':
     args = parser.parse_args()
     USE_CUDA = torch.cuda.is_available()
     device = torch.device("cuda" if USE_CUDA else "cpu")
-    EPOCH = 50
+    EPOCH = 20
     job_number = int(args.model) # get job number
+    pool = args.pool
     HOME_PATH = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/mix/'
     summary_path = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/'
     log_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_densenet/train_large_log{}'.format(job_number)
@@ -72,16 +99,17 @@ if __name__ == '__main__':
     dataset_train = KneeGradingDataset(train,HOME_PATH,tensor_transform_train,stage = 'train')
     dataset_val = KneeGradingDataset(val,HOME_PATH,tensor_transform_val,stage = 'val')
 
-    train_loader = data.DataLoader(dataset_train,batch_size=4)
-    val_loader = data.DataLoader(dataset_val,batch_size=4)
+    train_loader = data.DataLoader(dataset_train,batch_size=16)
+    val_loader = data.DataLoader(dataset_val,batch_size=8)
     print('Training data: ', len(dataset_train))
     print('Validation data:', len(dataset_val))
     # Network
-    net = densenet121(pretrained=True)
-    net.classifier = nn.Linear(1024,5)
+    net = DenseNet(121,True,pool)
     net = net.to(device)
     optimizer = optim.Adam(net.parameters(), lr=0.0001, weight_decay=1e-4)
     print(net)
+    print('Number of model parameters: {}'.format(
+        sum([p.data.nelement() for p in net.parameters()])))
     print('############### Model Finished ####################')
     criterion = F.cross_entropy
 

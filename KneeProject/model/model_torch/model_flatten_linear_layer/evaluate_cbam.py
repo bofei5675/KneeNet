@@ -67,15 +67,17 @@ if __name__ == '__main__':
     model.fc = nn.Sequential(nn.Dropout(0.2), nn.Linear(512, 5))
     if USE_CUDA:
         model.cuda()
-        state_dict = torch.load(os.path.join(model_file_path,'epoch_2.pth'))
+        state_dict = torch.load(os.path.join(model_file_path,'epoch_4.pth'))
     else:
-        state_dict = torch.load(os.path.join(model_file_path, 'epoch_2.pth'),map_location='cpu')
+        state_dict = torch.load(os.path.join(model_file_path, 'epoch_4.pth'),map_location='cpu')
+
     own_model =model.state_dict().keys()
     load_weights = state_dict.keys()
     own_model = set(own_model)
     load_weights = set(load_weights)
     output = [len(own_model),len(load_weights),len(own_model.intersection(load_weights)),len(own_model.difference(load_weights))]
     print('Own model layers {}; Load weights layers {}; Intersections {}; Difference {};'.format(*output))
+    model.load_state_dict(state_dict)
     criterion = nn.CrossEntropyLoss()
     print("model")
     print(model)
@@ -96,7 +98,7 @@ if __name__ == '__main__':
 
     # Validation metrics
     cm = confusion_matrix(truth, preds)
-    print('Confusion Matrix:\n',cm)
+    print('Confusion Matrix:\n',cm / cm.sum())
     kappa = np.round(cohen_kappa_score(truth, preds, weights="quadratic"), 4)
     acc = np.round(np.mean(cm.diagonal().astype(float) / cm.sum(axis=1)), 4)
     print('Oulu Acc {}'.format(acc))

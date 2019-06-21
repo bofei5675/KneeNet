@@ -45,7 +45,7 @@ if __name__ == '__main__':
     HOME_PATH = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/mix/'
     summary_path = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/'
     log_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_log{}'.format(job_number)
-    model_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/model_weights{}'.format(job_number)
+    model_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/model_Hloss_weights{}'.format(job_number)
 
     test = pd.read_csv(summary_path + 'test.csv').reset_index() # split train - test set.
 
@@ -57,45 +57,22 @@ if __name__ == '__main__':
                 ])
     dataset_test = KneeGradingDataset(test,HOME_PATH,tensor_transform_test,stage = 'test')
 
-    test_loader = data.DataLoader(dataset_test,batch_size=1)
+    test_loader = data.DataLoader(dataset_test,batch_size=4)
     print('Test data:', len(dataset_test))
-    if job_number == 1: # our vanilla way
-        net = resnet34(pretrained=True)
-        net.avgpool = nn.AvgPool2d(28,28)
-        net.fc = nn.Sequential(nn.Dropout(0.2),nn.Linear(512, 5)) # OULU's paper.
-        net = net.to(device)
-        optimizer = optim.Adam(net.parameters(), lr=0.0001)
-    elif job_number == 2:
-        net = resnet34(pretrained=True)
-        net.avgpool = nn.AvgPool2d(28, 28)
-        net.fc = nn.Sequential(nn.Linear(512, 5)) # OULU's paper.
-        net = net.to(device)
-        optimizer = optim.Adam(net.parameters(),lr=0.0001)
-    elif job_number == 5:
-        net = resnet34(pretrained=True)
-        net.avgpool = nn.AvgPool2d(28, 28)
-        net.fc = nn.Sequential(nn.Dropout(0.2), nn.Linear(512, 5))  # OULU's paper.
-        net = net.to(device)
-        optimizer = optim.Adam(net.parameters(), lr=0.0001)
-    elif job_number == 4:
-        net = resnet34(pretrained=True)
-        for param in net.parameters():
-            param.requires_grad = False
-
-        net.avgpool = nn.AvgPool2d(28, 28)
-        net.fc = nn.Linear(512, 5)
-        params_to_update = []
-        for name,param in net.named_parameters():
-            if param.requires_grad:
-                params_to_update.append(param)
-        net = net.to(device)
-        optimizer = optim.Adam(params_to_update,lr=0.0001)
+    net = resnet34(pretrained=True)
+    net.avgpool = nn.AvgPool2d(28, 28)
+    net.fc = nn.Sequential(nn.Dropout(0.2), nn.Linear(512, 5))  # OULU's paper.
+    net = net.to(device)
+    optimizer = optim.Adam(net.parameters(), lr=0.0001,weight_decay=1e-4)
     print(net)
-    # Network
+    '''
+        # Network load parameter from given directory 
+    '''
     if USE_CUDA:
-        net.load_state_dict(torch.load(model_file_path + '/epoch_4.pth'))
+        net.cuda()
+        net.load_state_dict(torch.load(model_file_path + '/epoch_7.pth'))
     else:
-        net.load_state_dict((torch.load(model_file_path + '/epoch_4.pth',map_location='cpu')))
+        net.load_state_dict((torch.load(model_file_path + '/epoch_7.pth',map_location='cpu')))
     net = nn.DataParallel(net)
     if USE_CUDA:
         net.cuda()

@@ -82,7 +82,8 @@ if __name__ == '__main__':
     print(net)
     net.avgpool = nn.AvgPool2d(28, 28)
     net.fc = nn.Sequential(nn.Dropout(0.2), nn.Linear(512, 5))  # OULU's paper.
-    load_file = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/model_weights3/epoch_3.pth'
+    load_file = None
+    #'/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/model_weights3/epoch_3.pth'
     if load_file:
         net.load_state_dict(torch.load(load_file))
         start_epoch = 3
@@ -128,7 +129,7 @@ if __name__ == '__main__':
             val_acc.append(acc)
             val_kappa.append(kappa)
             with open(output_file_path, 'a+') as f:
-                f.write(str(cm) + '\n')
+                f.write(str(cm / cm.sum()) + '\n')
                 f.write('Epoch {}: Val Loss {}; Val Acc {}; Val MSE {}; Val Kappa {};\n'\
                         .format(epoch + 1, val_loss, acc, mse, kappa))
 
@@ -143,10 +144,12 @@ if __name__ == '__main__':
                 torch.save(net.state_dict(), cur_snapshot_name)
                 prev_model = cur_snapshot_name
                 best_kappa = kappa
+                best_acc = acc
             else:
-                if kappa > best_kappa:
+                if acc > best_acc:
                     os.remove(prev_model)
                     best_kappa = kappa
+                    best_acc = acc
                     print('Saved snapshot:', cur_snapshot_name)
                     torch.save(net.state_dict(), cur_snapshot_name)
                     prev_model = cur_snapshot_name

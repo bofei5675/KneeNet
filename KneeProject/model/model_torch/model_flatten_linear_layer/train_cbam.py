@@ -28,16 +28,18 @@ import pandas as pd
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
-if not os.path.exists('./checkpoints'):
-    os.mkdir('./checkpoints')
+parser = argparse.ArgumentParser(description='Arguments for training model')
 
+parser.add_argument('-model','--model',help='Number indicates different training models')
+parser.add_argument('-attn','--attn',help='Confidence Regularizer')
 if __name__ == '__main__':
-
-    job_number = 5
+    args = parser.parse_args()
+    job_number = int(args.model)
+    attn = str(args.attn)
     USE_CUDA = torch.cuda.is_available()
     device = torch.device("cuda" if USE_CUDA else "cpu")
     net = resnet34(pretrained=True)
-    model = ResidualNet('ImageNet', 34, 1000, 'CBAM')
+    model = ResidualNet('ImageNet', 34, 1000, attn)
     load_my_state_dict(model,net.state_dict())
     del net # remove this net
     model.fc = nn.Sequential(nn.Dropout(0.2), nn.Linear(512,5))
@@ -52,12 +54,12 @@ if __name__ == '__main__':
     # define the data
     HOME_PATH = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/mix/'
     summary_path = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/'
-    log_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_cbam_log{}'.format(
-        job_number)
-    model_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/model_cbam_weights{}'.format(
-        job_number)
-    output_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_cbam_log{}/output{}.txt' \
-        .format(job_number, job_number)
+    log_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_{}_log{}'.format(
+        attn, job_number)
+    model_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/model_{}_weights{}'.format(
+        attn, job_number)
+    output_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_{}_log{}/output{}.txt' \
+        .format(attn, job_number, job_number)
     if not os.path.exists(log_file_path):
         os.makedirs(log_file_path)
     if not os.path.exists(model_file_path):
@@ -96,9 +98,9 @@ if __name__ == '__main__':
     if USE_CUDA:
         model.cuda()
         criterion.cuda()
-    load_file = os.path.join(model_file_path,'epoch_2.pth')
-    start_epoch = 2
-    EPOCH = start_epoch + 4
+    load_file = None #os.path.join(model_file_path,'epoch_2.pth')
+    start_epoch = 0
+    EPOCH = start_epoch + 20
     if load_file:
         model.load_state_dict(torch.load(load_file))
     for epoch in range(start_epoch,EPOCH):
@@ -124,7 +126,7 @@ if __name__ == '__main__':
             val_acc.append(acc)
             val_kappa.append(kappa)
             with open(output_file_path, 'a+') as f:
-                f.write(str(cm) + '\n')
+                f.write(str(cm / cm.sum()) + '\n')
                 f.write('Epoch {}: Val Loss {}; Val Acc {}; Val MSE {}; Val Kappa {};\n' \
                         .format(epoch + 1, val_loss, acc, mse, kappa))
 
@@ -139,10 +141,12 @@ if __name__ == '__main__':
                 torch.save(model.state_dict(), cur_snapshot_name)
                 prev_model = cur_snapshot_name
                 best_kappa = kappa
+                best_acc = acc
             else:
-                if kappa > best_kappa:
+                if acc > best_acc:
                     os.remove(prev_model)
                     best_kappa = kappa
+                    best_acc = acc
                     print('Saved snapshot:', cur_snapshot_name)
                     torch.save(model.state_dict(), cur_snapshot_name)
                     prev_model = cur_snapshot_name

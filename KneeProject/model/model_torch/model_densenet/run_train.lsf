@@ -6,4 +6,4 @@
 
 . /gpfs/share/skynet/apps/anaconda3/etc/profile.d/conda.sh
 conda activate powerai1.6_env
-python /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_densenet/train.py --model 1
+python /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_densenet/train2.py --model 2 --pool avg
