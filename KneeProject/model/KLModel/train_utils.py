@@ -41,7 +41,7 @@ def train_epoch(epoch, net, optimizer, train_loader, criterion, max_ep,use_cuda 
         probs = sm(outputs).data.cpu().numpy()
         preds = probs.argmax(1)
         truth = targets.data.cpu().numpy()
-        print(preds,truth)
+        #print(preds,truth)
         batch_correct += (preds == truth).sum()
         num_samples += probs.shape[0]
         loss = criterion(outputs, labels)

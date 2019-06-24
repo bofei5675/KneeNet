@@ -2,7 +2,8 @@ import pydicom as dicom
 import numpy as np
 import os
 import cv2
-
+from detector import KneeLocalizer,worker
+import scipy.ndimage as ndimage
 
 def read_dicom(filename):
     """
@@ -30,10 +31,12 @@ def read_dicom(filename):
     try:
         return img, data.ImagerPixelSpacing[0]
     except:
+        print('ImagerPixelSpacing Not found')
         pass
     try:
         return img, data.PixelSpacing[0]
     except:
+        print('PixelSpacing Not found')
         return None
 
 
@@ -122,21 +125,30 @@ def process_file(i, read_fname, fname, dataset_dir, save_dir, bbox, gradeL, grad
     tmp = np.zeros((img.shape[0] + 2 * pad, img.shape[1] + 2 * pad))
     tmp[pad:pad + img.shape[0], pad:pad + img.shape[1]] = img
     I = tmp
-
+    print('Original Image size: {}-{}'.format(*I.shape))
+    # const resolution by 0.2 factor
+    scaling_factor = 0.2
     # This can be refactored
     if leftok:
         x1, y1, x2, y2 = bbox[:4] + pad
-
+        print('Left size {},{}'.format(y2 - y1, x2 - x1))
 
         cx = x1 + (x2 - x1) // 2
         cy = y1 + (y2 - y1) // 2
-
+        '''
         x1 = cx - sizepx // 2
         x2 = cx + sizepx // 2
         y1 = cy - sizepx // 2
         y2 = cy + sizepx // 2
 
         patch = cv2.resize(I[y1:y2, x1:x2], (350, 350), interpolation=cv2.INTER_CUBIC)
+        '''
+        x1 = cx - 512
+        x2 = cx + 512
+        y1 = cy - 512
+        y2 = cy + 512
+        img_l = I[y1:y2, x1:x2]
+        patch = cv2.resize(I[y1:y2, x1:x2], (1024, 1024), interpolation=cv2.INTER_CUBIC)
         patch -= patch.min()
         patch /= patch.max()
         patch *= 65535
@@ -146,19 +158,25 @@ def process_file(i, read_fname, fname, dataset_dir, save_dir, bbox, gradeL, grad
         os.makedirs(os.path.join(save_dir, str(gradeL)), exist_ok=True)
         name_save = os.path.join(save_dir, str(gradeL), f"{fname.split('.')[0]}_L.png")
         cv2.imwrite(name_save, np.fliplr(patch))
-
+    print('Image meta data: shape {}; min {}; max {};'\
+          .format(patch.shape,np.min(patch),np.max(patch)))
     if rightok:
         x1, y1, x2, y2 = bbox[4:] + pad
-
+        print('Right size {},{}'.format(y2 - y1, x2 - x1))
         cx = x1 + (x2 - x1) // 2
         cy = y1 + (y2 - y1) // 2
 
-        x1 = cx - sizepx // 2
-        x2 = cx + sizepx // 2
-        y1 = cy - sizepx // 2
-        y2 = cy + sizepx // 2
+        # x1 = cx - sizepx // 2
+        # x2 = cx + sizepx // 2
+        # y1 = cy - sizepx // 2
+        # y2 = cy + sizepx // 2
+        x1 = cx - 512
+        x2 = cx + 512
+        y1 = cy - 512
+        y2 = cy + 512
 
-        patch = cv2.resize(I[y1:y2, x1:x2], (350, 350), interpolation=cv2.INTER_CUBIC)
+        patch = cv2.resize(I[y1:y2, x1:x2], (1024, 1024), interpolation=cv2.INTER_CUBIC)
+        #patch = ndimage.zoom(I[y1:y2,x1:x2],[(y2 - y1)/scaling_factor,(x2 - x1) / scaling_factor])
         patch -= patch.min()
         patch /= patch.max()
         patch *= 65535
@@ -168,4 +186,12 @@ def process_file(i, read_fname, fname, dataset_dir, save_dir, bbox, gradeL, grad
         os.makedirs(os.path.join(save_dir, str(gradeR)), exist_ok=True)
         name_save = os.path.join(save_dir, str(gradeR), f"{fname.split('.')[0]}_R.png")
         cv2.imwrite(name_save, patch)
+    print('Image meta data: shape {}; min {}; max {};' \
+          .format(patch.shape, np.min(patch), np.max(patch)))
     return False
+
+def image_preprocessing_oulu(data_folder, file):
+    localizer = KneeLocalizer()
+
+    bbox = worker(file, data_folder, localizer)  # output a string
+    return bbox

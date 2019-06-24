@@ -1,23 +1,17 @@
-from xray_processor import process_file
+from xray_processor import process_file, image_preprocessing_oulu
 import os
 import numpy as np
 import argparse
-from detector import KneeLocalizer,worker
 import pandas as pd
-def image_preprocessing_oulu(data_folder, file):
-    localizer = KneeLocalizer()
-
-    bbox = worker(file, data_folder, localizer)  # output a string
-    return bbox
 import time
 import os
 import random
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     summaryFile = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/Dataset/OAI_summary.csv'
     summary = pd.read_csv(summaryFile)
     print(summary)
-    save_dir = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed_oulu'
+    save_dir = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed_oulu_large'
     count = 0
     oaiDataset ='/gpfs/data/denizlab/Datasets/OAI_original'
     subject_id = summary.ID.unique().tolist()

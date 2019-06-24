@@ -48,8 +48,7 @@ if __name__ == '__main__':
     job_number = int(args.model)
     HOME_PATH = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/mix/'
     summary_path = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/'
-    log_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_cbam__log{}'.format(job_number)
-    model_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/model_cbam_weights{}'.format(job_number)
+    model_file_path ='/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/model_CBAM_weights1/epoch_10.pth'
 
     test = pd.read_csv(summary_path + 'test.csv')#.sample(n=20).reset_index() # split train - test set.
 
@@ -67,10 +66,9 @@ if __name__ == '__main__':
     model.fc = nn.Sequential(nn.Dropout(0.2), nn.Linear(512, 5))
     if USE_CUDA:
         model.cuda()
-        state_dict = torch.load(os.path.join(model_file_path,'epoch_4.pth'))
+        state_dict = torch.load(model_file_path)
     else:
-        state_dict = torch.load(os.path.join(model_file_path, 'epoch_4.pth'),map_location='cpu')
-
+        state_dict = torch.load(model_file_path, map_location='cpu')
     own_model =model.state_dict().keys()
     load_weights = state_dict.keys()
     own_model = set(own_model)
@@ -98,10 +96,13 @@ if __name__ == '__main__':
 
     # Validation metrics
     cm = confusion_matrix(truth, preds)
-    print('Confusion Matrix:\n',cm / cm.sum())
+    print('Confusion Matrix:\n',cm.diagonal() / cm.sum(axis = 1))
+    print('Confusion Matrix:\n',cm)
+
     kappa = np.round(cohen_kappa_score(truth, preds, weights="quadratic"), 4)
     acc = np.round(np.mean(cm.diagonal().astype(float) / cm.sum(axis=1)), 4)
     print('Oulu Acc {}'.format(acc))
+    print(cm.diagonal().astype(float) / cm.sum(axis=1))
     # mse
     mse = np.round(mean_squared_error(truth, preds), 4)
     test_time = np.round(time.time() - test_started, 4)

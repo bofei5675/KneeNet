@@ -9,7 +9,7 @@ parser.add_argument('-month','--month',help='Month folder name')
 
 def main(month):
     read_dicome_and_process(content_file_path='/gpfs/data/denizlab/Datasets/OAI_original/', month=month, method='mix',
-                            save_dir='/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/')
+                            save_dir='/gpfs/data/denizlab/Users/bz1030/data/OAI_processed_test/')
 if __name__ == '__main__':
     args = parser.parse_args()
     month = args.month

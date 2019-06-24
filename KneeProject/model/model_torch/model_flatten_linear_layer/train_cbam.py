@@ -25,7 +25,7 @@ from torchvision.models import resnet34
 from MODELS.model_resnet import *
 from PIL import ImageFile
 import pandas as pd
-
+np.set_printoptions(precision=4,suppress = True)
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 parser = argparse.ArgumentParser(description='Arguments for training model')
@@ -35,22 +35,28 @@ parser.add_argument('-attn','--attn',help='Confidence Regularizer')
 if __name__ == '__main__':
     args = parser.parse_args()
     job_number = int(args.model)
-    attn = str(args.attn)
+    attn = str(args.attn).upper()
     USE_CUDA = torch.cuda.is_available()
     device = torch.device("cuda" if USE_CUDA else "cpu")
     net = resnet34(pretrained=True)
     model = ResidualNet('ImageNet', 34, 1000, attn)
     load_my_state_dict(model,net.state_dict())
-    del net # remove this net
-    model.fc = nn.Sequential(nn.Dropout(0.2), nn.Linear(512,5))
+
+    model.fc = nn.Sequential(nn.Dropout(0.4), nn.Linear(512,5))
     criterion = nn.CrossEntropyLoss()
-    print("model")
     print(model)
     # get the number of model parameters
+    own_model = model.state_dict().keys()
+    load_weights = net.state_dict().keys()
+    own_model = set(own_model)
+    load_weights = set(load_weights)
+    output = [len(own_model), len(load_weights), len(own_model.intersection(load_weights)),
+              len(own_model.difference(load_weights))]
+    print('Own model layers {}; Load weights layers {}; Intersections {}; Difference {};'.format(*output))
     print('Number of model parameters: {}'.format(
         sum([p.data.nelement() for p in model.parameters()])))
     optimizer = torch.optim.Adam(model.parameters(), lr=0.0001,weight_decay=1e-4)
-
+    del net  # remove this net
     # define the data
     HOME_PATH = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/mix/'
     summary_path = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/'
@@ -126,7 +132,7 @@ if __name__ == '__main__':
             val_acc.append(acc)
             val_kappa.append(kappa)
             with open(output_file_path, 'a+') as f:
-                f.write(str(cm / cm.sum()) + '\n')
+                f.write(str(cm.diagonal() / cm.sum(axis = 1)) + '\n')
                 f.write('Epoch {}: Val Loss {}; Val Acc {}; Val MSE {}; Val Kappa {};\n' \
                         .format(epoch + 1, val_loss, acc, mse, kappa))
 
@@ -134,7 +140,7 @@ if __name__ == '__main__':
         np.save(os.path.join(log_file_path, 'logs.npy'),
                 [train_losses, val_losses, val_mse, val_acc, val_kappa])
 
-        if epoch > start_val:
+        if epoch >= start_val:
             # We will be saving only the snapshot which has lowest loss value on the validation set
             cur_snapshot_name = os.path.join(model_file_path, 'epoch_{}.pth'.format(epoch + 1))
             if prev_model is None:

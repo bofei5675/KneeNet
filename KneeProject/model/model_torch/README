@@ -1,3 +1,15 @@
+6/24
+Job Number 121 to normal queue
+DenseNet121
+Job Number 122 to short queue
+DenseNet 121
+
+Job Number 161 to normal queue
+DenseNet 161
+
+Job Number to 161 to short queue
+DenseNet 161
+
 6/21
 ResNet 34 + ImageNet weight + Entorpy loss(beta = 0.1) + CE
 Training for 7 epochs
