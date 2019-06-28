@@ -7,4 +7,4 @@
 ## pytorch environment
 . /gpfs/share/skynet/apps/anaconda3/etc/profile.d/conda.sh
 conda activate powerai1.6_env
-python /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train2.py --model 3 --beta 0.1
+python /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_hloss.py --model 2 --beta 1

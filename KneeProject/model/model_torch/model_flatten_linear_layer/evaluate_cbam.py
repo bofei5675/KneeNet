@@ -48,7 +48,7 @@ if __name__ == '__main__':
     job_number = int(args.model)
     HOME_PATH = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/mix/'
     summary_path = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/'
-    model_file_path ='/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/model_CBAM_weights1/epoch_10.pth'
+    model_file_path ='/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/Experiment/model_resnet34_cbam/val_acc_0.7457/epoch_9.pth'
 
     test = pd.read_csv(summary_path + 'test.csv')#.sample(n=20).reset_index() # split train - test set.
 
@@ -63,7 +63,7 @@ if __name__ == '__main__':
     test_loader = data.DataLoader(dataset_test,batch_size=6)
     print('Test data:', len(dataset_test))
     model = ResidualNet('ImageNet', 34, 1000, 'CBAM')
-    model.fc = nn.Sequential(nn.Dropout(0.2), nn.Linear(512, 5))
+    model.fc = nn.Sequential(nn.Dropout(0.4), nn.Linear(512, 5))
     if USE_CUDA:
         model.cuda()
         state_dict = torch.load(model_file_path)

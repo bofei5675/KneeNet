@@ -94,11 +94,11 @@ if __name__ =='__main__':
     ])
 
     augment_transforms = transforms.Compose([
-        CorrectBrightness(0.7, 1.3),
-        CorrectContrast(0.7, 1.3),
-        Rotate(-15, 15),
-        CorrectGamma(0.5, 2.5),
-        Jitter(300, 6, 20),
+        #CorrectBrightness(0.7, 1.3),
+        #CorrectContrast(0.7, 1.3),
+        #Rotate(-15, 15),
+        #CorrectGamma(0.5, 2.5),
+        #Jitter(300, 6, 20),
         scale_tensor_transform
     ])
 

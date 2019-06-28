@@ -45,9 +45,10 @@ if __name__ == '__main__':
     HOME_PATH = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/mix/'
     summary_path = '/gpfs/data/denizlab/Users/bz1030/data/OAI_processed/'
     log_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/train_log{}'.format(job_number)
-    model_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/model_Hloss_weights{}'.format(job_number)
+    model_file_path = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/model/model_torch/model_flatten_linear_layer/Experiment/model_resnet34_hloss/val_acc_0.7367/epoch_7.pth'
 
-    test = pd.read_csv(summary_path + 'test.csv').reset_index() # split train - test set.
+
+    test = pd.read_csv(summary_path + 'test.csv')#.reset_index() # split train - test set.
 
     start_test = 0
     tensor_transform_test = transforms.Compose([
@@ -70,9 +71,9 @@ if __name__ == '__main__':
     '''
     if USE_CUDA:
         net.cuda()
-        net.load_state_dict(torch.load(model_file_path + '/epoch_7.pth'))
+        net.load_state_dict(torch.load(model_file_path))
     else:
-        net.load_state_dict((torch.load(model_file_path + '/epoch_7.pth',map_location='cpu')))
+        net.load_state_dict((torch.load(model_file_path,map_location='cpu')))
     net = nn.DataParallel(net)
     if USE_CUDA:
         net.cuda()
