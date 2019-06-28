@@ -13,7 +13,7 @@ import cv2
 import torch
 import os
 
-def validate_epoch(net, val_loader, criterion,use_cuda = False):
+def validate_epoch(net, val_loader, criterion,use_cuda = False,loss_type="CE"):
 
     net.train(False)
 
@@ -39,10 +39,10 @@ def validate_epoch(net, val_loader, criterion,use_cuda = False):
 
         loss = criterion(outputs, labels)
 
-
-        probs = sm(outputs).data.cpu().numpy()
-        preds.append(probs)
-        truth.append(targets.cpu().numpy())
+        if loss_type == 'CE':
+            probs = sm(outputs).data.cpu().numpy()
+            preds.append(probs)
+            truth.append(targets.cpu().numpy())
         names_all.extend(names)
 
 

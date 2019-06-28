@@ -2,9 +2,9 @@
 #BSUB -e /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/project_oulu/resnet_codes/train%J.err
 #BSUB -o /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/project_oulu/resnet_codes/train%J.out
 #BSUB -gpu "num=1:mode=shared:j_exclusive=yes"
-#BSUB -q "normal"
+#BSUB -q "short"
 
 ## pytorch environment
-#. /gpfs/share/skynet/apps/anaconda3/etc/profile.d/conda.sh
-#conda activate powerai1.6_env
+. /gpfs/share/skynet/apps/anaconda3/etc/profile.d/conda.sh
+conda activate powerai1.6_env
 python /gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/project_oulu/resnet_codes/train.py

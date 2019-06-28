@@ -8,7 +8,7 @@ import torch
 import os
 
 
-def validate_epoch(net, val_loader, criterion,use_cuda = True):
+def validate_epoch(net, val_loader, criterion,use_cuda = True,loss_type='CE'):
     net.train(False)
 
     running_loss = 0.0
@@ -22,17 +22,30 @@ def validate_epoch(net, val_loader, criterion,use_cuda = True):
     for i, (batch, targets, names) in enumerate(val_loader):
         # forward + backward + optimize
         if use_cuda:
-            labels = Variable(targets.long().cuda())
-            inputs = Variable(batch.cuda())
+            if loss_type == 'CE':
+                labels = Variable(targets.long().cuda())
+                inputs = Variable(batch.cuda())
+            elif loss_type == 'MSE':
+                labels = Variable(targets.float().cuda())
+                inputs = Variable(batch.cuda())
         else:
-            labels = Variable(targets.long())
-            inputs = Variable(batch)
+            if loss_type == 'CE':
+                labels = Variable(targets.float())
+                inputs = Variable(batch.cuda())
+            elif loss_type == 'MSE':
+                labels = Variable(targets.float())
+                inputs = Variable(batch)
 
         outputs = net(inputs)
 
         loss = criterion(outputs, labels)
-
-        probs = sm(outputs).data.cpu().numpy()
+        if loss_type =='CE':
+            probs = sm(outputs).data.cpu().numpy()
+        elif loss_type =='MSE':
+            probs = outputs
+            probs[probs < 0] = 0
+            probs[probs > 4] = 4
+            probs = probs.round().data.cpu().numpy()
         preds.append(probs)
         truth.append(targets.cpu().numpy())
         names_all.extend(names)

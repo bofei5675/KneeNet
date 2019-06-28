@@ -71,7 +71,8 @@ def train_iterations(epoch, net,
                      output_file_path = None,
                      iteration = None,
                      start_val = 0,
-                     model_file_path=""):
+                     model_file_path="",
+                     loss_type='CE'):
     '''
 
     :param epoch:
@@ -105,19 +106,33 @@ def train_iterations(epoch, net,
 
         # forward + backward + optimize
         if use_cuda:
-            labels = Variable(targets.long().cuda())
-            inputs = Variable(batch.cuda())
+            if loss_type =='CE':
+                labels = Variable(targets.long().cuda())
+                inputs = Variable(batch.cuda())
+            elif loss_type =='MSE':
+                labels = Variable(targets.float().cuda())
+                inputs = Variable(batch.cuda())
         else:
-            labels = Variable(targets.long())
-            inputs = Variable(batch)
+            if loss_type == 'CE':
+                labels = Variable(targets.float())
+                inputs = Variable(batch.cuda())
+            elif loss_type == 'MSE':
+                labels = Variable(targets.float())
+                inputs = Variable(batch)
         print('label:',labels)
         outputs = net(inputs)
         print('outputs:',outputs)
-        probs = sm(outputs).data.cpu().numpy()
-        preds = probs.argmax(1)
         truth = targets.data.cpu().numpy()
+        if loss_type == 'CE':
+            probs = sm(outputs).data.cpu().numpy()
+            preds = probs.argmax(1)
+
+        elif loss_type =='MSE':
+            outputs[outputs < 0] = 0
+            outputs[outputs > 4] = 4
+            preds = outputs.round().data.cpu().numpy()
         batch_correct += (preds == truth).sum()
-        num_samples += probs.shape[0]
+        num_samples += truth.shape[0]
         loss = criterion(outputs, labels)
         loss.backward()
         optimizer.step()
@@ -131,7 +146,7 @@ def train_iterations(epoch, net,
         if (i+1) % iteration == 0 or (i+1) == n_batches:
             start = time.time()
             net.eval()
-            val_loss, probs, truth, _ = validate_epoch(net, val_loader, criterion, use_cuda)
+            val_loss, probs, truth, _ = validate_epoch(net, val_loader, criterion, use_cuda,loss_type)
             preds = probs.argmax(1)
             # Validation metrics
             cm = confusion_matrix(truth, preds)

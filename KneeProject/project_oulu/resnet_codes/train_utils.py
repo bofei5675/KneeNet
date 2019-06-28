@@ -6,7 +6,7 @@ This file contains the training utils
 from __future__ import print_function
 from torch.autograd import Variable
 import gc
-
+import torch.nn as nn
 import torch
 
 
