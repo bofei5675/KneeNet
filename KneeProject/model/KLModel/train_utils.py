@@ -119,9 +119,8 @@ def train_iterations(epoch, net,
             elif loss_type == 'MSE':
                 labels = Variable(targets.float())
                 inputs = Variable(batch)
-        print('label:',labels)
         outputs = net(inputs)
-        print('outputs:',outputs)
+
         truth = targets.data.cpu().numpy()
         if loss_type == 'CE':
             probs = sm(outputs).data.cpu().numpy()
@@ -130,6 +129,7 @@ def train_iterations(epoch, net,
         elif loss_type =='MSE':
             outputs[outputs < 0] = 0
             outputs[outputs > 4] = 4
+            outputs = outputs.reshape(1,-1)
             preds = outputs.round().data.cpu().numpy()
         batch_correct += (preds == truth).sum()
         num_samples += truth.shape[0]
@@ -147,15 +147,19 @@ def train_iterations(epoch, net,
             start = time.time()
             net.eval()
             val_loss, probs, truth, _ = validate_epoch(net, val_loader, criterion, use_cuda,loss_type)
-            preds = probs.argmax(1)
+            if loss_type == 'CE':
+                preds = probs.argmax(1)
+            elif loss_type =='MSE':
+                preds = probs
             # Validation metrics
+            print(truth,preds)
             cm = confusion_matrix(truth, preds)
             kappa = np.round(cohen_kappa_score(truth, preds, weights="quadratic"), 4)
             # avoid divide by 0 error when testing...
             acc = np.round(np.mean(cm.diagonal().astype(float) / (cm.sum(axis=1) + 1e-12) ), 4)
             mse = np.round(mean_squared_error(truth, preds), 4)
             val_time = np.round(time.time() - start, 4)
-            train_losses.append(running_loss / (i  + 1))
+            train_losses.append(running_loss / (i + 1))
             val_losses.append(val_loss)
             val_mse.append(mse)
             val_acc.append(acc)
@@ -166,9 +170,6 @@ def train_iterations(epoch, net,
                 f.write('Epoch {}; Iteration {}: Val Loss {}; Val Acc {}; Val MSE {}; Val Kappa {};\n' \
                         .format(epoch + 1,i, val_loss, acc, mse, kappa))
 
-            # Making logs backup
-            # epoch, current iteration, number of batches, loss, train acc, validation metrics.
-            logs = [epoch + 1, i, n_batches, train_losses, batch_correct / num_samples, val_losses, val_mse, val_acc, val_kappa]
 
             if epoch >= start_val:
                 # We will be saving only the snapshot which has lowest loss value on the validation set
@@ -190,6 +191,10 @@ def train_iterations(epoch, net,
                         with open(output_file_path, 'a+') as f:
                             f.write('Save {}\n'.format(cur_snapshot_name))
                         prev_model = cur_snapshot_name
+            # Making logs backup
+            # epoch, current iteration, number of batches, loss, train acc, validation metrics.
+            logs = [train_losses, batch_correct / num_samples, val_losses, val_mse,
+                    val_acc, val_kappa]
             net.train()
         gc.collect()
     gc.collect()

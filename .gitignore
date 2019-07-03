@@ -1,5 +1,7 @@
 DeepKnee/
 KneeLocalizer/
+KneeProject/snapshots_knee_grading
+KneeProject/snapshots_knee_grading_resnet
 data/
 .ipynb_checkpoints
 test/

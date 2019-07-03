@@ -45,7 +45,7 @@ def validate_epoch(net, val_loader, criterion,use_cuda = True,loss_type='CE'):
             probs = outputs
             probs[probs < 0] = 0
             probs[probs > 4] = 4
-            probs = probs.round().data.cpu().numpy()
+            probs = probs.view(1,-1).squeeze(0).round().data.cpu().numpy()
         preds.append(probs)
         truth.append(targets.cpu().numpy())
         names_all.extend(names)
@@ -55,7 +55,10 @@ def validate_epoch(net, val_loader, criterion,use_cuda = True,loss_type='CE'):
         gc.collect()
     gc.collect()
     bar.close()
-    preds = np.vstack(preds)
+    if loss_type =='CE':
+        preds = np.vstack(preds)
+    else:
+        preds = np.hstack(preds)
     truth = np.hstack(truth)
 
     return running_loss / n_batches, preds, truth, names_all
