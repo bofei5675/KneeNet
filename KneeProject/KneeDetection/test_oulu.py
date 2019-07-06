@@ -23,6 +23,7 @@ if not os.path.exists(output_folder):
     os.makedirs(output_folder)
 def writePngTo(folder, img,file_name,bbox,ratio_x= None,ratio_y = None):
     fig,ax = plt.subplots(1)
+    print(img.shape)
     ax.imshow(img)
     x1, y1, x2, y2 = bbox[:4]
     if ratio_x:
@@ -31,6 +32,7 @@ def writePngTo(folder, img,file_name,bbox,ratio_x= None,ratio_y = None):
     if ratio_y:
         y1 = y1 * ratio_y
         y2 = y2 * ratio_y
+    print(x1,y1,x2,y2)
     rect1 = patches.Rectangle((x1, y1), x2 - x1, y2 - y1, linewidth=1, edgecolor='r', facecolor='none')
     ax.add_patch(rect1)
     x1, y1, x2, y2 = bbox[4:]
@@ -40,6 +42,7 @@ def writePngTo(folder, img,file_name,bbox,ratio_x= None,ratio_y = None):
     if ratio_y:
         y1 = y1 * ratio_y
         y2 = y2 * ratio_y
+    print(x1, y1, x2, y2)
     rect2 = patches.Rectangle((x1, y1), x2 - x1, y2 - y1, linewidth=1, edgecolor='r', facecolor='none')
     ax.add_patch(rect2)
     plt.savefig(os.path.join(folder,file_name),dpi=300)
@@ -68,13 +71,13 @@ for idx,row in df.iterrows():
         img = dicom_img.pixel_array.astype(float)
         img = (np.maximum(img, 0) / img.max()) * 255.0
         row,col = img.shape
-        if not resize_shape:
-            img = cv2.reszie(img, (resize_shape,resize_shape), interpolation=cv2.INTER_CUBIC)
-            ratio_x = resize_shape / row
-            ratio_y = resize_shape / col
-        else:
-            ratio_y = None
-            ratio_x = None
+        if resize_shape:
+            img = cv2.resize(img, (resize_shape,resize_shape), interpolation=cv2.INTER_CUBIC)
+            ratio_x = resize_shape / col
+            ratio_y = resize_shape / row
+        #else:
+        #    ratio_y = None
+        #    ratio_x = None
         x = dicom_img[0x28, 0x30].value[0]
         y = dicom_img[0x28, 0x30].value[1]
         img_f_name = file_name.replace('/','_')
