@@ -2,7 +2,9 @@ import numpy as np
 import pandas as pd
 import os
 import time
-
+'''
+This script compute iou given a file that contains predicted bbox and true bbox
+'''
 def metrics_iou(boxA,boxB):
     '''
     Two numpy array as input

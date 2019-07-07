@@ -158,6 +158,12 @@ def metrics_iou(boxA,boxB):
 
     return iou_l,iou_r
 def iou(all_labels,all_preds):
+    '''
+    compute left iou and right iou from given coordinates
+    :param all_labels:
+    :param all_preds:
+    :return:
+    '''
     all_labels = np.vstack(all_labels)
     all_preds = np.vstack(all_preds)
     df = [all_labels, all_preds]
