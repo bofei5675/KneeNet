@@ -8,19 +8,20 @@ import torch
 import numpy as np
 from torch.autograd import Variable
 from tqdm import tqdm
-
+import sys
 if __name__ =='__main__':
+    Month = str(sys.argv[1])
     contents = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/Dataset/OAI_summary.csv'
     data_home = '/gpfs/data/denizlab/Datasets/OAI_original'
     load_model = '/gpfs/data/denizlab/Users/bz1030/KneeNet/KneeProject/KneeDetection/Experiment/ResNet18_/epoch_45.pth'
     USE_CUDA = torch.cuda.is_available()
     df = pd.read_csv(contents)
-    df = df.loc[df.Visit == '96m']
+    df = df.loc[df.Visit == Month]
     annot_dataset = df[['Folder','Visit']].drop_duplicates().reset_index()
     annot_dataset.drop('index',axis =1,inplace=True)
     print(annot_dataset.head())
     dataset2annot = DicomDataset(annot_dataset, data_home,None)
-    annot_loader = data.DataLoader(dataset2annot, batch_size=4)
+    annot_loader = data.DataLoader(dataset2annot, batch_size=16)
     net = ResNet(pretrained=True, dropout=0.2, use_cuda=USE_CUDA)
     net.eval()
     if USE_CUDA:
@@ -58,4 +59,4 @@ if __name__ =='__main__':
     df['ratios_x'] = ratios_x
     df['ratios_y'] = ratios_y
     df['fname'] = all_names
-    df.to_csv('output.csv',index=False)
+    df.to_csv('output{}.csv'.format(Month),index=False)
