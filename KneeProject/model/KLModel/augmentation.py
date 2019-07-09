@@ -44,6 +44,8 @@ class RandomCrop(object):
         # assert img.shape[2] == 3
         height, width = img.shape[0], img.shape[1]
         dy, dx = self.size
+        print(width,dx)
+        print(height,dy)
         x = np.random.randint(0, width - dx + 1)
         y = np.random.randint(0, height - dy + 1)
         return img[y:(y+dy), x:(x+dx)]
