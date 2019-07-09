@@ -74,7 +74,6 @@ def train_iterations(epoch, net,
                      model_file_path="",
                      loss_type='CE'):
     '''
-
     :param epoch:
     :param net:
     :param optimizer:

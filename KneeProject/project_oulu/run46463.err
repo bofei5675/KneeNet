@@ -1,6 +1,0 @@
-/gpfs/share/skynet/apps/anaconda3/envs/powerai1.6_env/lib/python3.6/site-packages/pydicom/filereader.py:292: UserWarning: Incorrect value for Specific Character Set 'ISO_2022_IR_6' - assuming 'ISO 2022 IR 6'
-  encoding = convert_encodings(encoding)
-/gpfs/share/skynet/apps/anaconda3/envs/powerai1.6_env/lib/python3.6/site-packages/pydicom/filereader.py:413: UserWarning: Incorrect value for Specific Character Set 'ISO_2022_IR_6' - assuming 'ISO 2022 IR 6'
-  encoding = convert_encodings(char_set)
-/gpfs/share/skynet/apps/anaconda3/envs/powerai1.6_env/lib/python3.6/site-packages/pydicom/dataset.py:568: UserWarning: Incorrect value for Specific Character Set 'ISO_2022_IR_6' - assuming 'ISO 2022 IR 6'
-  char_set = convert_encodings(char_set)
