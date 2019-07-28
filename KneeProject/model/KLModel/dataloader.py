@@ -62,12 +62,13 @@ class KneeGradingDatasetNew(data.Dataset):
             path = os.path.join(self.home_path, month, fname)
         f = h5py.File(path)
         img = f['data'].value
-        row, col = img.shape
-        if row != 1024 or col != 1024:
-            img = cv2.resize(img,(1024,1024),interpolation=cv2.INTER_CUBIC)
+        #row, col = img.shape
+        #if row != 1024 or col != 1024:
+         #   img = cv2.resize(img,(1024,1024),interpolation=cv2.INTER_CUBIC)
         f.close()
+        if side == 1:
+            img = np.fliplr(img) # flip horizontally
         img = np.expand_dims(img,axis=2)
-
         img = np.repeat(img[:, :], 3, axis=2)
         if self.transform:
             img = self.transform(img)
