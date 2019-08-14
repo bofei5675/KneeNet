@@ -10,3 +10,7 @@ Draw a figure with predicted bbox of given month
 ```
 python draw_figure2.py 96m &
 ```
+dataset_generation/
+---
+Generate figures that has whole knee x-ray image with predicted bbox
+Generate dataset (h5 files) based on the summary file.
